@@ -1,0 +1,141 @@
+---
+import Base from "../layouts/Base.astro";
+import AdSlot from "../components/AdSlot.astro";
+import FoodSearch from "../components/islands/FoodSearch.tsx";
+import { SITE, SITE_TAGLINE } from "../config";
+import { FOODS, foodsByCategory, popularFoods, fmtTime, primarySetting } from "../data/foods";
+
+const slim = FOODS.map((f) => ({ slug: f.slug, name: f.name, aliases: f.aliases || [], category: f.category, emoji: f.emoji }));
+const cats = foodsByCategory();
+const popular = popularFoods();
+
+const faqs = [
+  {
+    q: "Are air fryer times the same for every model?",
+    a: "No — and that's the honest truth most charts skip. Wattage, basket size and how full it is all change the timing. Treat every time here as a tested starting point: check at the earlier end, shake or flip, and for meat, go by internal temperature rather than the clock.",
+  },
+  {
+    q: "Do you need to preheat an air fryer?",
+    a: "Often, but not always. A 2–3 minute preheat helps foods sear and crisp (great for meats and fries). Many bake-style items are fine started cold. If a food benefits from preheating, the food's page notes it.",
+  },
+  {
+    q: "Why isn't my food crispy?",
+    a: "Almost always overcrowding. Air fryers crisp by blasting hot air around each piece, so a single, uncrowded layer is essential — cook in batches if you must. A light spritz of oil and shaking halfway also help. Very wet foods should be patted dry first.",
+  },
+  {
+    q: "Do I need to add oil?",
+    a: "Usually just a little, or none. Frozen breaded foods (fries, nuggets) already have enough. Fresh vegetables and proteins do better with a light toss of oil to crisp and brown. You never need to submerge anything — that's the whole point.",
+  },
+  {
+    q: "How do I know when meat is safe?",
+    a: "Use a food thermometer and the USDA safe minimum internal temperatures — chicken 165°F, ground meats 160°F, whole cuts of beef/pork 145°F with a rest, fish 145°F. Our temperature chart lists them all, and every meat page shows the target.",
+  },
+];
+
+const jsonLd = [
+  { "@type": "WebSite", name: SITE.SITE_NAME, url: SITE.SITE_URL, description: SITE_TAGLINE },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  },
+];
+---
+
+<Base
+  title={`${SITE.SITE_NAME} — Air Fryer Cook Times & Temperatures, With a Timer`}
+  description={SITE_TAGLINE}
+  path="/"
+  jsonLd={jsonLd}
+>
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10 opacity-80" style="background:radial-gradient(60% 60% at 50% 0%, color-mix(in oklab, var(--color-brand-500) 24%, transparent), transparent)" aria-hidden="true"></div>
+    <div class="mx-auto max-w-3xl px-4 pb-4 pt-12 text-center sm:pt-16">
+      <span class="chip mb-4">🔥 {FOODS.length}+ foods · just the numbers</span>
+      <h1 class="text-balance text-4xl font-extrabold tracking-tight sm:text-5xl">
+        Air fryer <span class="text-brand-600 dark:text-brand-400">cook times</span>, without the essay
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted">
+        The temperature, the time, and a built-in timer — for whatever you're
+        cooking. No life story, no scrolling past ten photos.
+      </p>
+    </div>
+    <div class="mx-auto max-w-2xl px-4 pb-4">
+      <FoodSearch client:load foods={slim} />
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <AdSlot slot="" />
+
+    <!-- Popular -->
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">Most searched</h2>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          popular.map((f) => {
+            const p = primarySetting(f);
+            return (
+              <a href={`/food/${f.slug}`} class="card group hover:border-brand-400">
+                <div class="flex items-center justify-between">
+                  <span class="text-lg font-semibold">{f.emoji} {f.name}</span>
+                  <span class="font-mono text-sm text-muted">{p.tempF}°F</span>
+                </div>
+                <p class="mt-1 font-mono text-sm text-brand-700 dark:text-brand-400">{fmtTime(p.min)}{p.shake ? " · shake halfway" : ""}</p>
+              </a>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="mt-14">
+      <h2 class="text-2xl font-bold tracking-tight">Browse by category</h2>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          cats.map((c) => (
+            <a href={`/category/${c.slug}`} class="card flex items-center justify-between hover:border-brand-400">
+              <span class="font-semibold">{c.category}</span>
+              <span class="font-mono text-xs text-muted">{c.foods.length}</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="mt-14 grid gap-6 rounded-3xl border border-border bg-surface p-6 md:grid-cols-2 md:p-8">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight">Just the answer, honestly</h2>
+        <p class="mt-3 text-muted">Every other search result buries the number under a novel and six ad breaks. We do the opposite:</p>
+      </div>
+      <ul class="space-y-4">
+        <li class="flex gap-3"><span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand-600/10 font-mono text-sm font-bold text-brand-700 dark:text-brand-300">1</span><p><strong>The number, up top.</strong> Temp and time first, with a timer you can start right there.</p></li>
+        <li class="flex gap-3"><span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-done-500/10 font-mono text-sm font-bold text-done-600">2</span><p><strong>From frozen or fresh.</strong> One toggle — because that's the question you actually have.</p></li>
+        <li class="flex gap-3"><span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-temp-500/10 font-mono text-sm font-bold text-temp-600">3</span><p><strong>Safe, not just quick.</strong> Meat pages show the <a href="/air-fryer-temperature-chart" class="prose-link">USDA safe temperature</a> to cook to.</p></li>
+      </ul>
+    </section>
+
+    <AdSlot slot="" />
+
+    <!-- FAQ -->
+    <section class="mt-14">
+      <h2 class="text-2xl font-bold tracking-tight">Air fryer basics</h2>
+      <div class="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {
+          faqs.map((f) => (
+            <details class="group px-5 py-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                {f.q}
+                <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-muted">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Base>

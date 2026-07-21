@@ -41,10 +41,19 @@ Each is a standalone Astro project; deploy each as its own CF Pages project with
 - [x] Data-refresh GitHub Action (re-fetch upstream + committed fallback)
 - [x] Production build green (1,780 pages, 5s); all 64k internal links resolve
 
-## Site 2 — Air-fryer cook times (`sites/airfryer`)  [not started]
-- [ ] Source USDA safe temps + compile cook-time ranges w/ citations (committed snapshot)
-- [ ] Timer island, from-frozen/fresh toggle
-- [ ] food × appliance programmatic pages, guides, trust pages, OG, README
+## Site 2 — Air-fryer cook times (`sites/airfryer`)  ✅ COMPLETE (built 3rd)
+- [x] Curated dataset of 60 foods (times as honest ranges) + USDA safe internal temps for 30 proteins; validated on build
+- [x] CookTimer island (fresh/frozen toggle, countdown + beep, USDA doneness reminder) + FoodSearch island
+- [x] `/food/[slug]` (60, timer + HowTo/FAQ JSON-LD + static SEO table), `/category/[slug]` (7), `/foods`, `/air-fryer-temperature-chart` (USDA + full chart)
+- [x] Trust pages (methodology emphasizes food safety), 404, per-type OG (warm), README, CI validation Action
+- [x] 10 guides via briefed subagents (food-safety anchored; USDA temps + foil/parchment safety verified)
+- [x] Build green (87 pages); all 3,213 internal links resolve
+- Distinct "warm kitchen" identity (orange / done-green / temp-red), light+dark
+
+## Status: all three sites complete ✅
+Adapters (1,780 pp) · Bizdays (1,868 pp) · Airfryer (87 pp). All build green, all
+internal links resolve, all AdSense-ready + Consent Mode v2, each with a distinct
+identity, committed data snapshots, per-type OG, trust pages, and a launch README.
 
 ## Site 3 — Business-days/holidays (`sites/bizdays`)  ✅ COMPLETE (built 2nd)
 - [x] Data: `date-holidays` (open, MIT) → committed snapshot, 205 countries × 2024–2030 (18k+ holidays); per-country weekend map

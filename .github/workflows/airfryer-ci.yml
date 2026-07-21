@@ -1,0 +1,30 @@
+name: Validate & build (Crisply)
+
+# The food dataset is hand-curated (there's no upstream feed to refresh), so this
+# workflow acts as a quality gate: it re-validates the dataset and confirms the
+# site builds on every push and pull request that touches the site.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "sites/airfryer/**"
+  pull_request:
+    paths:
+      - "sites/airfryer/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/airfryer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Validate the food dataset
+        run: npm run data
+      - name: Build
+        run: npm run build

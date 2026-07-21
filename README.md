@@ -15,7 +15,7 @@ free tier).
 |-----|------------|-------------|-------------------|
 | [`sites/adapters`](./sites/adapters) | "Do I need a travel adapter for A→B?" — plug/voltage by country + route tool | Incumbents are dated info-dumps or affiliate listicles; nobody answers *your route* cleanly. IEC-sourced, evergreen, hands-off. | Voltroam |
 | [`sites/bizdays`](./sites/bizdays) | International business-days & public-holidays calculator | Long-tail per-country tooling timeanddate under-serves; open-data + annual auto-refresh. | Worktally |
-| `sites/airfryer` *(pending)* | Air-fryer & multicooker cook-time database with a timer | Beats recipe-blog bloat — the number, instantly, with USDA doneness temps. | Crisply |
+| [`sites/airfryer`](./sites/airfryer) | Air-fryer cook-time database with a built-in timer | Beats recipe-blog bloat — the number, instantly, with USDA doneness temps. | Crisply |
 
 Each site is a **standalone** Astro project. Deploy each as its own Cloudflare
 Pages project with the **root directory** set to its subfolder — they do not share

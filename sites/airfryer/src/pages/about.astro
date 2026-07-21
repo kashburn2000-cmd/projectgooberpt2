@@ -1,0 +1,63 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { FOODS } from "../data/foods";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+  { "@type": "Organization", name: SITE.SITE_NAME, url: SITE.SITE_URL, email: SITE.CONTACT_EMAIL,
+    description: `Air fryer cook times and temperatures for ${FOODS.length}+ foods, with a built-in timer.` },
+];
+---
+
+<Base title={`About ${SITE.SITE_NAME}`} description={`Why ${SITE.SITE_NAME} exists and how we keep our air-fryer times useful and honest.`} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "About" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">About {SITE.SITE_NAME}</h1>
+    <div class="prose mt-6">
+      <p>
+        {SITE.SITE_NAME} exists for one moment: you're standing at the air fryer,
+        food in hand, and you just need to know <strong>how long and how hot.</strong>
+        Not a memoir. Not ten photos. The number, a timer, and how to tell when it's
+        done.
+      </p>
+
+      <h2>Why we built it</h2>
+      <p>
+        Search "air fryer chicken breast" and you'll scroll past a life story, a
+        pop-up, and a wall of ads before you find "18 minutes." That pattern is the
+        single most-complained-about thing on the recipe internet. So we built the
+        opposite: a fast, searchable database where the temperature and time are the
+        first thing you see, with a timer you can start on the spot.
+      </p>
+
+      <h2>How we handle the numbers — honestly</h2>
+      <p>
+        Here's the part most charts won't admit: <strong>air fryers vary.</strong>
+        Wattage, basket size, and how full it is all change the timing. So we don't
+        pretend our times are exact laws. We give tested, sensible starting ranges,
+        we tell you to check early, and — crucially — for anything with a food-safety
+        temperature (all meat, poultry and fish) we show the
+        <a href="/air-fryer-temperature-chart">USDA safe internal temperature</a> to
+        cook to. Time is a guide; a thermometer is the truth.
+      </p>
+
+      <h2>What you won't find here</h2>
+      <ul>
+        <li>Auto-playing videos or a story before the answer.</li>
+        <li>Made-up precision — we use ranges because reality has ranges.</li>
+        <li>Advice to eat undercooked meat. We always point you to the safe temperature.</li>
+      </ul>
+
+      <p>
+        Full details of where our numbers come from are on the
+        <a href="/methodology">methodology & safety page</a>. Spot something off?
+        <a href="/contact">Tell us</a> — we'll fix it.
+      </p>
+
+      <p><a href="/">Find a cook time →</a></p>
+    </div>
+  </div>
+</Base>

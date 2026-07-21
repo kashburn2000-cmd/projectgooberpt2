@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { FOODS } from "../data/foods";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Methodology", path: "/methodology" }])];
+---
+
+<Base title={`Methodology & Food Safety — ${SITE.SITE_NAME}`} description="Where our air-fryer times and safe cooking temperatures come from, and how to use them safely." jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Methodology" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Methodology & food safety</h1>
+    <div class="prose mt-6">
+      <p>
+        We'd rather be honest and useful than pretend to a precision that air fryers
+        don't allow. Here's exactly how {SITE.SITE_NAME}'s numbers work.
+      </p>
+
+      <h2>Two different kinds of numbers</h2>
+      <p>Every food page has up to two numbers, and they come from very different places:</p>
+      <ul>
+        <li>
+          <strong>Safe internal temperature (authoritative).</strong> For meat,
+          poultry, fish and eggs we show the <strong>USDA safe minimum internal
+          temperature</strong> — e.g. 165°F for chicken, 160°F for ground beef,
+          145°F for whole cuts and fish. These are published food-safety standards
+          and are the real test of doneness. See the full
+          <a href="/air-fryer-temperature-chart">temperature chart</a>.
+        </li>
+        <li>
+          <strong>Cook time & air-fryer temperature (guidance).</strong> These are
+          practical starting points compiled from typical air-fryer results and
+          manufacturer guidance, expressed as <strong>ranges</strong> because
+          outcomes genuinely vary. They are not laboratory figures for your specific
+          machine.
+        </li>
+      </ul>
+
+      <h2>Why times are ranges, not exact</h2>
+      <p>Air fryers differ in ways that meaningfully change cooking:</p>
+      <ul>
+        <li><strong>Wattage & size</strong> — a compact 1,200 W basket and a large 1,700 W oven-style unit don't cook alike.</li>
+        <li><strong>How full the basket is</strong> — crowding slows everything down and hurts crisping.</li>
+        <li><strong>Starting temperature</strong> — straight from the fridge vs. room temperature vs. frozen.</li>
+        <li><strong>Preference</strong> — "done" fries and "extra crispy" fries are minutes apart.</li>
+      </ul>
+      <p>That's why we preset the built-in timer to the <em>shorter</em> end of each range: check early, then add time. It's the safe direction to err.</p>
+
+      <h2>Food safety comes first</h2>
+      <blockquote>
+        Time is a guide. Internal temperature is the truth. For any meat, poultry,
+        fish or egg dish, use a food thermometer and cook to the USDA safe
+        temperature — regardless of what any timer says.
+      </blockquote>
+      <p>Undercooked poultry, ground meat and seafood can cause serious illness. When our time range and your thermometer disagree, the thermometer wins.</p>
+
+      <h2>Updates & corrections</h2>
+      <p>
+        The dataset ({FOODS.length}+ foods) is hand-curated and versioned in our
+        source repository, and validated on every build. If a time or temperature
+        doesn't match your results, <a href="/contact">tell us</a> — real feedback
+        makes the ranges better.
+      </p>
+
+      <p class="text-sm"><em>{SITE.SITE_NAME} is an independent reference and is not affiliated with the USDA or any air fryer manufacturer.</em></p>
+    </div>
+  </div>
+</Base>

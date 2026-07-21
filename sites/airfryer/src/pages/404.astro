@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import { popularFoods } from "../data/foods";
+const foods = popularFoods().slice(0, 8);
+---
+
+<Base
+  title="Page not found"
+  description="That page doesn't exist. Search a food or browse the temperature chart."
+  noindex={true}
+>
+  <div class="mx-auto max-w-2xl px-4 py-16 text-center">
+    <div class="font-mono text-6xl font-extrabold text-brand-600 dark:text-brand-400">404</div>
+    <h1 class="mt-4 text-2xl font-bold tracking-tight">That one's a little overcooked</h1>
+    <p class="mt-2 text-muted">We couldn't find that page. Search a food, or jump to a popular one below.</p>
+    <div class="mt-6 flex justify-center gap-2">
+      <a href="/" class="btn-primary">Search foods</a>
+      <a href="/air-fryer-temperature-chart" class="btn-ghost">Temp chart</a>
+    </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-2">
+      {foods.map((f) => (
+        <a href={`/food/${f.slug}`} class="chip hover:border-brand-400">{f.emoji} {f.name}</a>
+      ))}
+    </div>
+  </div>
+</Base>

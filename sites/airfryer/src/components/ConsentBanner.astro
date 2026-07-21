@@ -1,0 +1,57 @@
+---
+// Lightweight cookie-consent banner (vanilla JS, no framework shipped).
+// Shows only until the visitor makes a choice; wires Google Consent Mode v2.
+import { SITE } from "../config";
+---
+
+<div
+  id="consent-banner"
+  hidden
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookie consent"
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 backdrop-blur"
+>
+  <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-sm text-muted">
+      We use cookies to measure traffic and, once enabled, to show ads. You can
+      accept or decline non-essential cookies. See our
+      <a href="/privacy" class="prose-link">privacy policy</a>.
+    </p>
+    <div class="flex shrink-0 gap-2">
+      <button id="consent-reject" class="btn-ghost text-sm" type="button">
+        Decline
+      </button>
+      <button id="consent-accept" class="btn-primary text-sm" type="button">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById("consent-banner");
+    if (!banner) return;
+    var stored = null;
+    try { stored = localStorage.getItem("consent"); } catch (e) {}
+    if (!stored) banner.hidden = false;
+
+    function decide(granted) {
+      try { localStorage.setItem("consent", granted ? "granted" : "denied"); } catch (e) {}
+      if (window.gtag) {
+        window.gtag("consent", "update", {
+          ad_storage: granted ? "granted" : "denied",
+          ad_user_data: granted ? "granted" : "denied",
+          ad_personalization: granted ? "granted" : "denied",
+          analytics_storage: granted ? "granted" : "denied",
+        });
+      }
+      banner.hidden = true;
+    }
+    var a = document.getElementById("consent-accept");
+    var r = document.getElementById("consent-reject");
+    if (a) a.addEventListener("click", function () { decide(true); });
+    if (r) r.addEventListener("click", function () { decide(false); });
+  })();
+</script>

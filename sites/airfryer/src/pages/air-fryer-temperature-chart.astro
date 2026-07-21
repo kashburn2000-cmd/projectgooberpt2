@@ -1,0 +1,113 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import AdSlot from "../components/AdSlot.astro";
+import { foodsByCategory, USDA_TEMPS, primarySetting, fmtTime, FOODS } from "../data/foods";
+import { breadcrumbLd, faqLd } from "../lib/seo";
+
+const cats = foodsByCategory();
+const faqs = [
+  {
+    q: "What temperature should an air fryer be for most foods?",
+    a: "Most foods air fry well between 375°F and 400°F. Frozen and breaded items lean toward 400°F for crispiness; delicate items like fish or vegetables you want tender do well around 375–380°F. Low-and-slow items like kale chips or 'boiled' eggs use much lower temperatures.",
+  },
+  {
+    q: "Are these air fryer times exact?",
+    a: "No — treat them as tested starting points. Air fryers vary in wattage and basket size, so check at the earlier time, shake or flip, and add a minute or two as needed. For anything with a safe internal temperature (all meats, poultry and fish), go by a thermometer, not the clock.",
+  },
+  {
+    q: "What are the USDA safe cooking temperatures?",
+    a: "Chicken and turkey 165°F; ground meats 160°F; whole cuts of beef, pork, veal and lamb 145°F with a 3-minute rest; fish 145°F; egg dishes 160°F; leftovers 165°F. These are the temperatures that make food safe, regardless of cooking method.",
+  },
+];
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "Temperature chart", path: "/air-fryer-temperature-chart" }]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title="Air Fryer Temperature Chart — Times & Safe Cooking Temps"
+  description={`A printable air fryer temperature chart for ${FOODS.length}+ foods, plus the USDA safe internal cooking temperatures for meat, poultry and fish.`}
+  image="/og/chart.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Temperature chart" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Air fryer temperature chart</h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted">
+      Two charts in one: the air-fryer time and temperature for every food we cover,
+      and the USDA safe internal temperatures that actually tell you when meat is done.
+    </p>
+
+    <!-- USDA safe temps -->
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">USDA safe internal temperatures</h2>
+      <p class="mt-2 text-muted">These are the authoritative doneness targets — cook to these, measured with a food thermometer, whatever your air fryer's timer says.</p>
+      <div class="mt-4 overflow-x-auto rounded-2xl border border-border">
+        <table class="w-full min-w-[480px] text-left text-sm">
+          <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+            <tr><th class="px-4 py-3 font-semibold">Food</th><th class="px-4 py-3 font-semibold">Safe temp</th><th class="px-4 py-3 font-semibold">Notes</th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            {USDA_TEMPS.map((t) => (
+              <tr class="bg-surface">
+                <td class="px-4 py-3 font-medium">{t.food}</td>
+                <td class="px-4 py-3 font-mono text-temp-600">{t.tempF}°F / {t.tempC}°C</td>
+                <td class="px-4 py-3 text-muted">{t.note || "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-2 text-xs text-muted">Source: USDA Food Safety and Inspection Service safe minimum internal temperatures.</p>
+    </section>
+
+    <AdSlot slot="" />
+
+    <!-- Air fryer chart -->
+    <section class="mt-10">
+      <h2 class="text-2xl font-bold tracking-tight">Air fryer time & temperature chart</h2>
+      <p class="mt-2 text-muted">Starting points — check early and cook meat to the safe temperature above.</p>
+      {
+        cats.map((c) => (
+          <div class="mt-5">
+            <h3 class="text-lg font-bold">{c.category}</h3>
+            <div class="mt-2 overflow-x-auto rounded-2xl border border-border">
+              <table class="w-full min-w-[520px] text-left text-sm">
+                <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+                  <tr><th class="px-4 py-2.5 font-semibold">Food</th><th class="px-4 py-2.5 font-semibold">Temp</th><th class="px-4 py-2.5 font-semibold">Time</th><th class="px-4 py-2.5 font-semibold">Cook to</th></tr>
+                </thead>
+                <tbody class="divide-y divide-border">
+                  {c.foods.map((f) => {
+                    const p = primarySetting(f);
+                    return (
+                      <tr class="bg-surface">
+                        <td class="px-4 py-2.5 font-medium"><a href={`/food/${f.slug}`} class="hover:text-brand-700 dark:hover:text-brand-300">{f.emoji} {f.name}</a></td>
+                        <td class="px-4 py-2.5 font-mono">{p.tempF}°F</td>
+                        <td class="px-4 py-2.5 font-mono">{fmtTime(p.min)}</td>
+                        <td class="px-4 py-2.5 font-mono text-muted">{f.doneness ? `${f.doneness.tempF}°F` : "—"}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-bold tracking-tight">FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">{f.q}<span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span></summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { foodsByCategory, primarySetting, fmtTime, type Food } from "../../data/foods";
+import { breadcrumbLd } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return foodsByCategory().map((c) => ({
+    params: { slug: c.slug },
+    props: { category: c.category, foods: c.foods },
+  }));
+}
+
+const { category, foods } = Astro.props as { category: string; foods: Food[] };
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: category, path: `/category/${foodsByCategory().find((c) => c.category === category)!.slug}` },
+  ]),
+];
+---
+
+<Base
+  title={`Air Fryer ${category}: Times & Temperatures`}
+  description={`Air fryer cook times and temperatures for ${category.toLowerCase()} — ${foods.length} foods, each with a built-in timer. Just the numbers.`}
+  image="/og/chart.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: category }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Air fryer {category.toLowerCase()}</h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted">Times and temperatures for {foods.length} {category.toLowerCase()} foods. Tap any one for a built-in timer and doneness guide.</p>
+
+    <AdSlot slot="" />
+
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-border">
+      <table class="w-full min-w-[480px] text-left text-sm">
+        <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+          <tr><th class="px-4 py-3 font-semibold">Food</th><th class="px-4 py-3 font-semibold">Temp</th><th class="px-4 py-3 font-semibold">Time</th><th class="px-4 py-3 font-semibold">Shake?</th></tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          {foods.map((f) => {
+            const p = primarySetting(f);
+            return (
+              <tr class="bg-surface hover:bg-surface2">
+                <td class="px-4 py-3 font-medium"><a href={`/food/${f.slug}`} class="hover:text-brand-700 dark:hover:text-brand-300">{f.emoji} {f.name}</a></td>
+                <td class="px-4 py-3 font-mono">{p.tempF}°F</td>
+                <td class="px-4 py-3 font-mono">{fmtTime(p.min)}</td>
+                <td class="px-4 py-3">{p.shake ? "Yes" : "—"}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-2 text-sm">
+      {foodsByCategory().filter((c) => c.category !== category).map((c) => (
+        <a href={`/category/${c.slug}`} class="chip hover:border-brand-400">{c.category}</a>
+      ))}
+      <a href="/air-fryer-temperature-chart" class="prose-link ml-1 self-center">Full temp chart →</a>
+    </div>
+  </div>
+</Base>
