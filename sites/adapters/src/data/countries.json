@@ -1,0 +1,3122 @@
+[
+  {
+    "code": "AF",
+    "name": "Afghanistan",
+    "slug": "afghanistan",
+    "alpha3": "AFG",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "AL",
+    "name": "Albania",
+    "slug": "albania",
+    "alpha3": "ALB",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "DZ",
+    "name": "Algeria",
+    "slug": "algeria",
+    "alpha3": "DZA",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "AS",
+    "name": "American Samoa",
+    "slug": "american-samoa",
+    "alpha3": "ASM",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "plugs": [
+      "A",
+      "B",
+      "F",
+      "I"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "AD",
+    "name": "Andorra",
+    "slug": "andorra",
+    "alpha3": "AND",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "AO",
+    "name": "Angola",
+    "slug": "angola",
+    "alpha3": "AGO",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "AI",
+    "name": "Anguilla",
+    "slug": "anguilla",
+    "alpha3": "AIA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "AG",
+    "name": "Antigua and Barbuda",
+    "slug": "antigua-and-barbuda",
+    "alpha3": "ATG",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 230,
+    "frequency": 60
+  },
+  {
+    "code": "AR",
+    "name": "Argentina",
+    "slug": "argentina",
+    "alpha3": "ARG",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "AM",
+    "name": "Armenia",
+    "slug": "armenia",
+    "alpha3": "ARM",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "AW",
+    "name": "Aruba",
+    "slug": "aruba",
+    "alpha3": "ABW",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "F"
+    ],
+    "voltage": 127,
+    "frequency": 60
+  },
+  {
+    "code": "AU",
+    "name": "Australia",
+    "slug": "australia",
+    "alpha3": "AUS",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "AT",
+    "name": "Austria",
+    "slug": "austria",
+    "alpha3": "AUT",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "AZ",
+    "name": "Azerbaijan",
+    "slug": "azerbaijan",
+    "alpha3": "AZE",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "BS",
+    "name": "Bahamas",
+    "slug": "bahamas",
+    "alpha3": "BHS",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "BH",
+    "name": "Bahrain",
+    "slug": "bahrain",
+    "alpha3": "BHR",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BD",
+    "name": "Bangladesh",
+    "slug": "bangladesh",
+    "alpha3": "BGD",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "G",
+      "K"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "BB",
+    "name": "Barbados",
+    "slug": "barbados",
+    "alpha3": "BRB",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 115,
+    "frequency": 50
+  },
+  {
+    "code": "BY",
+    "name": "Belarus",
+    "slug": "belarus",
+    "alpha3": "BLR",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "BE",
+    "name": "Belgium",
+    "slug": "belgium",
+    "alpha3": "BEL",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BZ",
+    "name": "Belize",
+    "slug": "belize",
+    "alpha3": "BLZ",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "G"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "BJ",
+    "name": "Benin",
+    "slug": "benin",
+    "alpha3": "BEN",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "BM",
+    "name": "Bermuda",
+    "slug": "bermuda",
+    "alpha3": "BMU",
+    "region": "Americas",
+    "subRegion": "Northern America",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "BT",
+    "name": "Bhutan",
+    "slug": "bhutan",
+    "alpha3": "BTN",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "F",
+      "G",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BO",
+    "name": "Bolivia",
+    "slug": "bolivia",
+    "alpha3": "BOL",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "C"
+    ],
+    "voltage": 115,
+    "frequency": 50
+  },
+  {
+    "code": "BA",
+    "name": "Bosnia and Herzegovina",
+    "slug": "bosnia-and-herzegovina",
+    "alpha3": "BIH",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BW",
+    "name": "Botswana",
+    "slug": "botswana",
+    "alpha3": "BWA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BR",
+    "name": "Brazil",
+    "slug": "brazil",
+    "alpha3": "BRA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "N"
+    ],
+    "voltage": 127,
+    "frequency": 60
+  },
+  {
+    "code": "BN",
+    "name": "Brunei",
+    "slug": "brunei",
+    "alpha3": "BRN",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "BG",
+    "name": "Bulgaria",
+    "slug": "bulgaria",
+    "alpha3": "BGR",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "BF",
+    "name": "Burkina Faso",
+    "slug": "burkina-faso",
+    "alpha3": "BFA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "BI",
+    "name": "Burundi",
+    "slug": "burundi",
+    "alpha3": "BDI",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "KH",
+    "name": "Cambodia",
+    "slug": "cambodia",
+    "alpha3": "KHM",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "CM",
+    "name": "Cameroon",
+    "slug": "cameroon",
+    "alpha3": "CMR",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "CA",
+    "name": "Canada",
+    "slug": "canada",
+    "alpha3": "CAN",
+    "region": "Americas",
+    "subRegion": "Northern America",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "CV",
+    "name": "Cape Verde",
+    "slug": "cape-verde",
+    "alpha3": "CPV",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "KY",
+    "name": "Cayman Islands",
+    "slug": "cayman-islands",
+    "alpha3": "CYM",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "CF",
+    "name": "Central African Republic",
+    "slug": "central-african-republic",
+    "alpha3": "CAF",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TD",
+    "name": "Chad",
+    "slug": "chad",
+    "alpha3": "TCD",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "CL",
+    "name": "Chile",
+    "slug": "chile",
+    "alpha3": "CHL",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "L"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "CN",
+    "name": "China",
+    "slug": "china",
+    "alpha3": "CHN",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "CO",
+    "name": "Colombia",
+    "slug": "colombia",
+    "alpha3": "COL",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "KM",
+    "name": "Comoros",
+    "slug": "comoros",
+    "alpha3": "COM",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "CG",
+    "name": "Congo (Republic)",
+    "slug": "congo-republic",
+    "alpha3": "COG",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "CK",
+    "name": "Cook Islands",
+    "slug": "cook-islands",
+    "alpha3": "COK",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "CR",
+    "name": "Costa Rica",
+    "slug": "costa-rica",
+    "alpha3": "CRI",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "HR",
+    "name": "Croatia",
+    "slug": "croatia",
+    "alpha3": "HRV",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "CU",
+    "name": "Cuba",
+    "slug": "cuba",
+    "alpha3": "CUB",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "CW",
+    "name": "Curaçao",
+    "slug": "curacao",
+    "alpha3": "CUW",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "voltage": 127,
+    "frequency": 50
+  },
+  {
+    "code": "CY",
+    "name": "Cyprus",
+    "slug": "cyprus",
+    "alpha3": "CYP",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "CZ",
+    "name": "Czechia",
+    "slug": "czechia",
+    "alpha3": "CZE",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "DK",
+    "name": "Denmark",
+    "slug": "denmark",
+    "alpha3": "DNK",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "E",
+      "F",
+      "K"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "DJ",
+    "name": "Djibouti",
+    "slug": "djibouti",
+    "alpha3": "DJI",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "DM",
+    "name": "Dominica",
+    "slug": "dominica",
+    "alpha3": "DMA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "DO",
+    "name": "Dominican Republic",
+    "slug": "dominican-republic",
+    "alpha3": "DOM",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "CD",
+    "name": "DR Congo",
+    "slug": "dr-congo",
+    "alpha3": "COD",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "EC",
+    "name": "Ecuador",
+    "slug": "ecuador",
+    "alpha3": "ECU",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "EG",
+    "name": "Egypt",
+    "slug": "egypt",
+    "alpha3": "EGY",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "SV",
+    "name": "El Salvador",
+    "slug": "el-salvador",
+    "alpha3": "SLV",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 115,
+    "frequency": 60
+  },
+  {
+    "code": "GQ",
+    "name": "Equatorial Guinea",
+    "slug": "equatorial-guinea",
+    "alpha3": "GNQ",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "ER",
+    "name": "Eritrea",
+    "slug": "eritrea",
+    "alpha3": "ERI",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "L"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "EE",
+    "name": "Estonia",
+    "slug": "estonia",
+    "alpha3": "EST",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SZ",
+    "name": "Eswatini",
+    "slug": "eswatini",
+    "alpha3": "SWZ",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ET",
+    "name": "Ethiopia",
+    "slug": "ethiopia",
+    "alpha3": "ETH",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E",
+      "F",
+      "L"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "FK",
+    "name": "Falkland Islands (Malvinas)",
+    "slug": "falkland-islands-malvinas",
+    "alpha3": "FLK",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "FO",
+    "name": "Faroe Islands",
+    "slug": "faroe-islands",
+    "alpha3": "FRO",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "E",
+      "F",
+      "K"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "FJ",
+    "name": "Fiji",
+    "slug": "fiji",
+    "alpha3": "FJI",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "FI",
+    "name": "Finland",
+    "slug": "finland",
+    "alpha3": "FIN",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "slug": "france",
+    "alpha3": "FRA",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GF",
+    "name": "French Guiana",
+    "slug": "french-guiana",
+    "alpha3": "GUF",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "D",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "GA",
+    "name": "Gabon",
+    "slug": "gabon",
+    "alpha3": "GAB",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "GM",
+    "name": "Gambia",
+    "slug": "gambia",
+    "alpha3": "GMB",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GE",
+    "name": "Georgia",
+    "slug": "georgia",
+    "alpha3": "GEO",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "slug": "germany",
+    "alpha3": "DEU",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GH",
+    "name": "Ghana",
+    "slug": "ghana",
+    "alpha3": "GHA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GI",
+    "name": "Gibraltar",
+    "slug": "gibraltar",
+    "alpha3": "GIB",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "GR",
+    "name": "Greece",
+    "slug": "greece",
+    "alpha3": "GRC",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GL",
+    "name": "Greenland",
+    "slug": "greenland",
+    "alpha3": "GRL",
+    "region": "Americas",
+    "subRegion": "Northern America",
+    "plugs": [
+      "C",
+      "E",
+      "F",
+      "K"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GD",
+    "name": "Grenada",
+    "slug": "grenada",
+    "alpha3": "GRD",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GP",
+    "name": "Guadeloupe",
+    "slug": "guadeloupe",
+    "alpha3": "GLP",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "D",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "GU",
+    "name": "Guam",
+    "slug": "guam",
+    "alpha3": "GUM",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "GT",
+    "name": "Guatemala",
+    "slug": "guatemala",
+    "alpha3": "GTM",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "GN",
+    "name": "Guinea",
+    "slug": "guinea",
+    "alpha3": "GIN",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "F",
+      "K"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "GW",
+    "name": "Guinea-Bissau",
+    "slug": "guinea-bissau",
+    "alpha3": "GNB",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "GY",
+    "name": "Guyana",
+    "slug": "guyana",
+    "alpha3": "GUY",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "D",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 60
+  },
+  {
+    "code": "HT",
+    "name": "Haiti",
+    "slug": "haiti",
+    "alpha3": "HTI",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "HN",
+    "name": "Honduras",
+    "slug": "honduras",
+    "alpha3": "HND",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "HK",
+    "name": "Hong Kong",
+    "slug": "hong-kong",
+    "alpha3": "HKG",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "HU",
+    "name": "Hungary",
+    "slug": "hungary",
+    "alpha3": "HUN",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "IS",
+    "name": "Iceland",
+    "slug": "iceland",
+    "alpha3": "ISL",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "IN",
+    "name": "India",
+    "slug": "india",
+    "alpha3": "IND",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ID",
+    "name": "Indonesia",
+    "slug": "indonesia",
+    "alpha3": "IDN",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "IR",
+    "name": "Iran",
+    "slug": "iran",
+    "alpha3": "IRN",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "IQ",
+    "name": "Iraq",
+    "slug": "iraq",
+    "alpha3": "IRQ",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "IE",
+    "name": "Ireland",
+    "slug": "ireland",
+    "alpha3": "IRL",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "IM",
+    "name": "Isle of Man",
+    "slug": "isle-of-man",
+    "alpha3": "IMN",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "IL",
+    "name": "Israel",
+    "slug": "israel",
+    "alpha3": "ISR",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "H",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "IT",
+    "name": "Italy",
+    "slug": "italy",
+    "alpha3": "ITA",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F",
+      "L"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "CI",
+    "name": "Ivory Coast",
+    "slug": "ivory-coast",
+    "alpha3": "CIV",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "JM",
+    "name": "Jamaica",
+    "slug": "jamaica",
+    "alpha3": "JAM",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 50
+  },
+  {
+    "code": "JP",
+    "name": "Japan",
+    "slug": "japan",
+    "alpha3": "JPN",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 100,
+    "frequency": 50
+  },
+  {
+    "code": "JO",
+    "name": "Jordan",
+    "slug": "jordan",
+    "alpha3": "JOR",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "J"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "KZ",
+    "name": "Kazakhstan",
+    "slug": "kazakhstan",
+    "alpha3": "KAZ",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "KE",
+    "name": "Kenya",
+    "slug": "kenya",
+    "alpha3": "KEN",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "KI",
+    "name": "Kiribati",
+    "slug": "kiribati",
+    "alpha3": "KIR",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "KW",
+    "name": "Kuwait",
+    "slug": "kuwait",
+    "alpha3": "KWT",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "KG",
+    "name": "Kyrgyzstan",
+    "slug": "kyrgyzstan",
+    "alpha3": "KGZ",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "LA",
+    "name": "Laos",
+    "slug": "laos",
+    "alpha3": "LAO",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "LV",
+    "name": "Latvia",
+    "slug": "latvia",
+    "alpha3": "LVA",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "LB",
+    "name": "Lebanon",
+    "slug": "lebanon",
+    "alpha3": "LBN",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "G"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "LS",
+    "name": "Lesotho",
+    "slug": "lesotho",
+    "alpha3": "LSO",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "M"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "LR",
+    "name": "Liberia",
+    "slug": "liberia",
+    "alpha3": "LBR",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "F"
+    ],
+    "voltage": 120,
+    "frequency": 50
+  },
+  {
+    "code": "LY",
+    "name": "Libya",
+    "slug": "libya",
+    "alpha3": "LBY",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "D",
+      "F",
+      "L"
+    ],
+    "voltage": 127,
+    "frequency": 50
+  },
+  {
+    "code": "LI",
+    "name": "Liechtenstein",
+    "slug": "liechtenstein",
+    "alpha3": "LIE",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "J"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "LT",
+    "name": "Lithuania",
+    "slug": "lithuania",
+    "alpha3": "LTU",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "LU",
+    "name": "Luxembourg",
+    "slug": "luxembourg",
+    "alpha3": "LUX",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MO",
+    "name": "Macao",
+    "slug": "macao",
+    "alpha3": "MAC",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "D",
+      "F",
+      "G",
+      "M"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MG",
+    "name": "Madagascar",
+    "slug": "madagascar",
+    "alpha3": "MDG",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "E",
+      "J",
+      "K"
+    ],
+    "voltage": 127,
+    "frequency": 50
+  },
+  {
+    "code": "MW",
+    "name": "Malawi",
+    "slug": "malawi",
+    "alpha3": "MWI",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MY",
+    "name": "Malaysia",
+    "slug": "malaysia",
+    "alpha3": "MYS",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "G",
+      "M"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "MV",
+    "name": "Maldives",
+    "slug": "maldives",
+    "alpha3": "MDV",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "D",
+      "G",
+      "J",
+      "K",
+      "L"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ML",
+    "name": "Mali",
+    "slug": "mali",
+    "alpha3": "MLI",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MT",
+    "name": "Malta",
+    "slug": "malta",
+    "alpha3": "MLT",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MQ",
+    "name": "Martinique",
+    "slug": "martinique",
+    "alpha3": "MTQ",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "D",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MR",
+    "name": "Mauritania",
+    "slug": "mauritania",
+    "alpha3": "MRT",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MU",
+    "name": "Mauritius",
+    "slug": "mauritius",
+    "alpha3": "MUS",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MX",
+    "name": "Mexico",
+    "slug": "mexico",
+    "alpha3": "MEX",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 127,
+    "frequency": 60
+  },
+  {
+    "code": "FM",
+    "name": "Micronesia",
+    "slug": "micronesia",
+    "alpha3": "FSM",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "MD",
+    "name": "Moldova",
+    "slug": "moldova",
+    "alpha3": "MDA",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MC",
+    "name": "Monaco",
+    "slug": "monaco",
+    "alpha3": "MCO",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MN",
+    "name": "Mongolia",
+    "slug": "mongolia",
+    "alpha3": "MNG",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "ME",
+    "name": "Montenegro",
+    "slug": "montenegro",
+    "alpha3": "MNE",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "MS",
+    "name": "Montserrat",
+    "slug": "montserrat",
+    "alpha3": "MSR",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 230,
+    "frequency": 60
+  },
+  {
+    "code": "MA",
+    "name": "Morocco",
+    "slug": "morocco",
+    "alpha3": "MAR",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 127,
+    "frequency": 50
+  },
+  {
+    "code": "MZ",
+    "name": "Mozambique",
+    "slug": "mozambique",
+    "alpha3": "MOZ",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "F",
+      "M"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MM",
+    "name": "Myanmar",
+    "slug": "myanmar",
+    "alpha3": "MMR",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "F",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "NA",
+    "name": "Namibia",
+    "slug": "namibia",
+    "alpha3": "NAM",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "M"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "NR",
+    "name": "Nauru",
+    "slug": "nauru",
+    "alpha3": "NRU",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "NP",
+    "name": "Nepal",
+    "slug": "nepal",
+    "alpha3": "NPL",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "NL",
+    "name": "Netherlands, Kingdom of the",
+    "slug": "netherlands-kingdom-of-the",
+    "alpha3": "NLD",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "NC",
+    "name": "New Caledonia",
+    "slug": "new-caledonia",
+    "alpha3": "NCL",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "NZ",
+    "name": "New Zealand",
+    "slug": "new-zealand",
+    "alpha3": "NZL",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "NI",
+    "name": "Nicaragua",
+    "slug": "nicaragua",
+    "alpha3": "NIC",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "NE",
+    "name": "Niger",
+    "slug": "niger",
+    "alpha3": "NER",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "NG",
+    "name": "Nigeria",
+    "slug": "nigeria",
+    "alpha3": "NGA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "KP",
+    "name": "North Korea",
+    "slug": "north-korea",
+    "alpha3": "PRK",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "MK",
+    "name": "North Macedonia",
+    "slug": "north-macedonia",
+    "alpha3": "MKD",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "NO",
+    "name": "Norway",
+    "slug": "norway",
+    "alpha3": "NOR",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "OM",
+    "name": "Oman",
+    "slug": "oman",
+    "alpha3": "OMN",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "PK",
+    "name": "Pakistan",
+    "slug": "pakistan",
+    "alpha3": "PAK",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "C",
+      "D",
+      "G",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "PW",
+    "name": "Palau",
+    "slug": "palau",
+    "alpha3": "PLW",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "PA",
+    "name": "Panama",
+    "slug": "panama",
+    "alpha3": "PAN",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "PG",
+    "name": "Papua New Guinea",
+    "slug": "papua-new-guinea",
+    "alpha3": "PNG",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "PY",
+    "name": "Paraguay",
+    "slug": "paraguay",
+    "alpha3": "PRY",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "PE",
+    "name": "Peru",
+    "slug": "peru",
+    "alpha3": "PER",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 60
+  },
+  {
+    "code": "PH",
+    "name": "Philippines",
+    "slug": "philippines",
+    "alpha3": "PHL",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "B",
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 60
+  },
+  {
+    "code": "PL",
+    "name": "Poland",
+    "slug": "poland",
+    "alpha3": "POL",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "PT",
+    "name": "Portugal",
+    "slug": "portugal",
+    "alpha3": "PRT",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "PR",
+    "name": "Puerto Rico",
+    "slug": "puerto-rico",
+    "alpha3": "PRI",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "QA",
+    "name": "Qatar",
+    "slug": "qatar",
+    "alpha3": "QAT",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "RE",
+    "name": "Réunion",
+    "slug": "reunion",
+    "alpha3": "REU",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "E"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "RO",
+    "name": "Romania",
+    "slug": "romania",
+    "alpha3": "ROU",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "RU",
+    "name": "Russia",
+    "slug": "russia",
+    "alpha3": "RUS",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "RW",
+    "name": "Rwanda",
+    "slug": "rwanda",
+    "alpha3": "RWA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "J"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "KN",
+    "name": "Saint Kitts and Nevis",
+    "slug": "saint-kitts-and-nevis",
+    "alpha3": "KNA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B",
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 60
+  },
+  {
+    "code": "LC",
+    "name": "Saint Lucia",
+    "slug": "saint-lucia",
+    "alpha3": "LCA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "MF",
+    "name": "Saint Martin (French part)",
+    "slug": "saint-martin-french-part",
+    "alpha3": "MAF",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "VC",
+    "name": "Saint Vincent and the Grenadines",
+    "slug": "saint-vincent-and-the-grenadines",
+    "alpha3": "VCT",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "C",
+      "E",
+      "G",
+      "I",
+      "K"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "WS",
+    "name": "Samoa",
+    "slug": "samoa",
+    "alpha3": "WSM",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SM",
+    "name": "San Marino",
+    "slug": "san-marino",
+    "alpha3": "SMR",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F",
+      "L"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ST",
+    "name": "Sao Tome and Principe",
+    "slug": "sao-tome-and-principe",
+    "alpha3": "STP",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "SA",
+    "name": "Saudi Arabia",
+    "slug": "saudi-arabia",
+    "alpha3": "SAU",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 220,
+    "frequency": 60
+  },
+  {
+    "code": "SN",
+    "name": "Senegal",
+    "slug": "senegal",
+    "alpha3": "SEN",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "E",
+      "K"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "RS",
+    "name": "Serbia",
+    "slug": "serbia",
+    "alpha3": "SRB",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SC",
+    "name": "Seychelles",
+    "slug": "seychelles",
+    "alpha3": "SYC",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "SL",
+    "name": "Sierra Leone",
+    "slug": "sierra-leone",
+    "alpha3": "SLE",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SG",
+    "name": "Singapore",
+    "slug": "singapore",
+    "alpha3": "SGP",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "C",
+      "G",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SK",
+    "name": "Slovakia",
+    "slug": "slovakia",
+    "alpha3": "SVK",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SI",
+    "name": "Slovenia",
+    "slug": "slovenia",
+    "alpha3": "SVN",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SB",
+    "name": "Solomon Islands",
+    "slug": "solomon-islands",
+    "alpha3": "SLB",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "plugs": [
+      "G",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "SO",
+    "name": "Somalia",
+    "slug": "somalia",
+    "alpha3": "SOM",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "ZA",
+    "name": "South Africa",
+    "slug": "south-africa",
+    "alpha3": "ZAF",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "M",
+      "N"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "KR",
+    "name": "South Korea",
+    "slug": "south-korea",
+    "alpha3": "KOR",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 60
+  },
+  {
+    "code": "ES",
+    "name": "Spain",
+    "slug": "spain",
+    "alpha3": "ESP",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "LK",
+    "name": "Sri Lanka",
+    "slug": "sri-lanka",
+    "alpha3": "LKA",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "plugs": [
+      "D",
+      "G",
+      "M"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SD",
+    "name": "Sudan",
+    "slug": "sudan",
+    "alpha3": "SDN",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "D"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SR",
+    "name": "Suriname",
+    "slug": "suriname",
+    "alpha3": "SUR",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 127,
+    "frequency": 60
+  },
+  {
+    "code": "SE",
+    "name": "Sweden",
+    "slug": "sweden",
+    "alpha3": "SWE",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "CH",
+    "name": "Switzerland",
+    "slug": "switzerland",
+    "alpha3": "CHE",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "plugs": [
+      "C",
+      "J"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "SY",
+    "name": "Syria",
+    "slug": "syria",
+    "alpha3": "SYR",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "E",
+      "L"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TW",
+    "name": "Taiwan",
+    "slug": "taiwan",
+    "alpha3": "TWN",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "TJ",
+    "name": "Tajikistan",
+    "slug": "tajikistan",
+    "alpha3": "TJK",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "plugs": [
+      "C",
+      "F",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TZ",
+    "name": "Tanzania",
+    "slug": "tanzania",
+    "alpha3": "TZA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "TH",
+    "name": "Thailand",
+    "slug": "thailand",
+    "alpha3": "THA",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TL",
+    "name": "Timor-Leste",
+    "slug": "timor-leste",
+    "alpha3": "TLS",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "C",
+      "E",
+      "F",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TG",
+    "name": "Togo",
+    "slug": "togo",
+    "alpha3": "TGO",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TO",
+    "name": "Tonga",
+    "slug": "tonga",
+    "alpha3": "TON",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "TT",
+    "name": "Trinidad and Tobago",
+    "slug": "trinidad-and-tobago",
+    "alpha3": "TTO",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 115,
+    "frequency": 60
+  },
+  {
+    "code": "TN",
+    "name": "Tunisia",
+    "slug": "tunisia",
+    "alpha3": "TUN",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "plugs": [
+      "C",
+      "E"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "TR",
+    "name": "Türkiye",
+    "slug": "turkiye",
+    "alpha3": "TUR",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TM",
+    "name": "Turkmenistan",
+    "slug": "turkmenistan",
+    "alpha3": "TKM",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "plugs": [
+      "B",
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "TC",
+    "name": "Turks and Caicos Islands",
+    "slug": "turks-and-caicos-islands",
+    "alpha3": "TCA",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "TV",
+    "name": "Tuvalu",
+    "slug": "tuvalu",
+    "alpha3": "TUV",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "plugs": [
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "UG",
+    "name": "Uganda",
+    "slug": "uganda",
+    "alpha3": "UGA",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 240,
+    "frequency": 50
+  },
+  {
+    "code": "UA",
+    "name": "Ukraine",
+    "slug": "ukraine",
+    "alpha3": "UKR",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "plugs": [
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "slug": "united-arab-emirates",
+    "alpha3": "ARE",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "C",
+      "D",
+      "G"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom",
+    "slug": "united-kingdom",
+    "alpha3": "GBR",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "plugs": [
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "US",
+    "name": "United States",
+    "slug": "united-states",
+    "alpha3": "USA",
+    "region": "Americas",
+    "subRegion": "Northern America",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "UY",
+    "name": "Uruguay",
+    "slug": "uruguay",
+    "alpha3": "URY",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "C",
+      "F",
+      "I",
+      "L"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "UZ",
+    "name": "Uzbekistan",
+    "slug": "uzbekistan",
+    "alpha3": "UZB",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "plugs": [
+      "C",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "VU",
+    "name": "Vanuatu",
+    "slug": "vanuatu",
+    "alpha3": "VUT",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "plugs": [
+      "C",
+      "G",
+      "I"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "VE",
+    "name": "Venezuela",
+    "slug": "venezuela",
+    "alpha3": "VEN",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 120,
+    "frequency": 60
+  },
+  {
+    "code": "VN",
+    "name": "Vietnam",
+    "slug": "vietnam",
+    "alpha3": "VNM",
+    "region": "Asia",
+    "subRegion": "South-eastern Asia",
+    "plugs": [
+      "A",
+      "C",
+      "F"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  },
+  {
+    "code": "VG",
+    "name": "Virgin Islands (British)",
+    "slug": "virgin-islands-british",
+    "alpha3": "VGB",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "VI",
+    "name": "Virgin Islands (U.S.)",
+    "slug": "virgin-islands-u-s",
+    "alpha3": "VIR",
+    "region": "Americas",
+    "subRegion": "Latin America and the Caribbean",
+    "plugs": [
+      "A",
+      "B"
+    ],
+    "voltage": 110,
+    "frequency": 60
+  },
+  {
+    "code": "YE",
+    "name": "Yemen",
+    "slug": "yemen",
+    "alpha3": "YEM",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "plugs": [
+      "A",
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ZM",
+    "name": "Zambia",
+    "slug": "zambia",
+    "alpha3": "ZMB",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "C",
+      "D",
+      "G"
+    ],
+    "voltage": 230,
+    "frequency": 50
+  },
+  {
+    "code": "ZW",
+    "name": "Zimbabwe",
+    "slug": "zimbabwe",
+    "alpha3": "ZWE",
+    "region": "Africa",
+    "subRegion": "Sub-Saharan Africa",
+    "plugs": [
+      "D",
+      "G"
+    ],
+    "voltage": 220,
+    "frequency": 50
+  }
+]

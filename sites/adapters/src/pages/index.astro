@@ -1,0 +1,226 @@
+---
+import Base from "../layouts/Base.astro";
+import AdSlot from "../components/AdSlot.astro";
+import RouteFinder from "../components/islands/RouteFinder.tsx";
+import { SITE, SITE_TAGLINE } from "../config";
+import {
+  COUNTRIES,
+  COUNTRY_BY_CODE,
+  popularDestinations,
+  popularOrigins,
+} from "../data/countries";
+import { PLUG_TYPES, ALL_PLUG_IDS } from "../data/plugTypes";
+import { adapterAdvice } from "../lib/adapter";
+import { flag } from "../lib/util";
+
+const slim = COUNTRIES.map(({ code, name, slug, region, plugs, voltage, frequency }) => ({
+  code,
+  name,
+  slug,
+  region,
+  plugs,
+  voltage,
+  frequency,
+  alpha3: "",
+  subRegion: "",
+}));
+
+const us = COUNTRY_BY_CODE.get("US")!;
+const popularRoutes = popularDestinations()
+  .filter((c) => c.code !== "US")
+  .slice(0, 12)
+  .map((dest) => ({ dest, advice: adapterAdvice(us, dest) }));
+
+const faqs = [
+  {
+    q: "Do I need a voltage converter or just a plug adapter?",
+    a: "They solve different problems. A plug adapter only changes the shape of the pins so your plug fits the socket — it does nothing to the electricity. A voltage converter actually changes the voltage. If your device is dual-voltage (marked 100–240V, like almost all phone and laptop chargers) you only ever need an adapter. If it is single-voltage (many hair dryers, curling irons and small appliances) and you are travelling between a 120V and a 230V country, you also need a converter.",
+  },
+  {
+    q: "Will my phone and laptop charger work in another country?",
+    a: "Almost certainly yes. Check the small print on the charger: if it says 'INPUT: 100–240V, 50/60Hz' it is dual-voltage and works anywhere in the world with just a plug adapter. The overwhelming majority of modern USB chargers, laptop bricks and camera chargers are dual-voltage.",
+  },
+  {
+    q: "What is a universal travel adapter?",
+    a: "A single adapter with sliding or swappable pins that fits the sockets of most countries (typically covering plug types A, C, G and I). It is the simplest option if you travel widely — but remember it is still only an adapter, not a converter, so it does not protect single-voltage devices from a voltage mismatch.",
+  },
+  {
+    q: "Does the plug shape tell me the voltage?",
+    a: "No — they are independent. Two countries can share the same plug type but run different voltages, and the same voltage can appear on very different plugs. That is exactly why this tool checks plug fit and voltage separately for your specific route.",
+  },
+  {
+    q: "What about the frequency (50Hz vs 60Hz)?",
+    a: "Frequency almost never matters for modern electronics, which don't care about 50 vs 60 Hz. It can matter for devices with motors or mechanical clocks (some older appliances), which may run slightly faster or slower. For phones, laptops and chargers you can ignore it.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@type": "WebSite",
+    name: SITE.SITE_NAME,
+    url: SITE.SITE_URL,
+    description: SITE_TAGLINE,
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Base
+  title={`${SITE.SITE_NAME} — Travel plug adapter & voltage checker for any country`}
+  description={SITE_TAGLINE}
+  path="/"
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 opacity-70"
+      style="background:radial-gradient(60% 60% at 50% 0%, color-mix(in oklab, var(--color-brand-500) 22%, transparent), transparent)"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="mx-auto max-w-4xl px-4 pb-6 pt-12 text-center sm:pt-16">
+      <span class="chip mb-4">🌍 218 countries · IEC reference data</span>
+      <h1 class="text-balance text-4xl font-extrabold tracking-tight sm:text-5xl">
+        Do I need a <span class="text-brand-600 dark:text-brand-400">travel adapter</span>?
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted">
+        Tell us where you're from and where you're going. We'll tell you exactly
+        what to pack — an adapter, a voltage converter, or nothing at all.
+      </p>
+    </div>
+    <div class="mx-auto max-w-3xl px-4 pb-4">
+      <RouteFinder client:load countries={slim} initialFrom="US" />
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <AdSlot slot="" />
+
+    <!-- Popular routes -->
+    <section class="mt-10">
+      <div class="flex items-end justify-between">
+        <h2 class="text-2xl font-bold tracking-tight">Popular from the United States</h2>
+        <a href="/adapter" class="prose-link text-sm font-medium">All routes →</a>
+      </div>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          popularRoutes.map(({ dest, advice }) => (
+            <a
+              href={`/adapter/${us.slug}-to-${dest.slug}`}
+              class="card group transition-shadow hover:shadow-md"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-semibold">
+                  {flag(dest.code)} {dest.name}
+                </span>
+                <span class="font-mono text-sm text-muted">{dest.voltage}V</span>
+              </div>
+              <p class="mt-2 text-sm text-muted">
+                {advice.adapterNeeded ? `Needs a Type ${dest.plugs[0]} adapter` : "Plugs fit"}
+                {advice.converterNeeded ? " · converter for single-voltage gear" : " · no converter"}
+              </p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {dest.plugs.map((p) => (
+                  <span class="chip text-xs">Type {p}</span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Regions -->
+    <section class="mt-14">
+      <h2 class="text-2xl font-bold tracking-tight">Browse by region</h2>
+      <div class="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        {
+          ["Europe", "Asia", "Americas", "Africa", "Oceania"].map((r) => (
+            <a
+              href={`/region/${r.toLowerCase()}`}
+              class="card flex items-center justify-between hover:border-brand-400"
+            >
+              <span class="font-semibold">{r}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Plug types -->
+    <section class="mt-14">
+      <div class="flex items-end justify-between">
+        <h2 class="text-2xl font-bold tracking-tight">The 14 plug types, A to N</h2>
+        <a href="/plug-types" class="prose-link text-sm font-medium">Full guide →</a>
+      </div>
+      <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        {
+          ALL_PLUG_IDS.map((id) => (
+            <a href={`/plug-types/${id.toLowerCase()}`} class="card text-center hover:border-brand-400">
+              <div class="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-brand-600/10 font-mono text-lg font-bold text-brand-600 dark:text-brand-300">
+                {id}
+              </div>
+              <p class="mt-2 text-xs text-muted">{PLUG_TYPES[id].grounded ? "Grounded" : "Ungrounded"}</p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Converter explainer -->
+    <section class="mt-14 grid gap-6 rounded-3xl border border-border bg-surface p-6 md:grid-cols-2 md:p-8">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight">Adapter vs. converter, in one minute</h2>
+        <p class="mt-3 text-muted">
+          The single most common travel-power mistake is confusing the two. Here's
+          the rule that keeps your devices safe:
+        </p>
+      </div>
+      <ul class="space-y-4">
+        <li class="flex gap-3">
+          <span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-brand-600/10 font-mono text-sm font-bold text-brand-600 dark:text-brand-300">1</span>
+          <p><strong>Adapter</strong> changes the plug shape only. You almost always need one when crossing regions.</p>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-volt-500/10 font-mono text-sm font-bold text-volt-600">2</span>
+          <p><strong>Converter</strong> changes the voltage. You only need one for <em>single-voltage</em> devices crossing between 120V and 230V countries.</p>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-good/10 font-mono text-sm font-bold text-good">3</span>
+          <p>Check the label: <span class="chip">100–240V</span> means dual-voltage — adapter only.</p>
+        </li>
+      </ul>
+    </section>
+
+    <AdSlot slot="" />
+
+    <!-- FAQ -->
+    <section class="mt-14">
+      <h2 class="text-2xl font-bold tracking-tight">Frequently asked</h2>
+      <div class="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {
+          faqs.map((f) => (
+            <details class="group px-5 py-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                {f.q}
+                <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-muted">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Base>

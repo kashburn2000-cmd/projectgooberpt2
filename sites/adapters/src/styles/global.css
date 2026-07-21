@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* Manual dark mode via a .dark class on <html> (set before paint, no FOUC). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Identity: "electric travel" — electric blue (current) + voltage amber
+   (warnings), technical mono for plug/voltage codes. */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo,
+    Consolas, monospace;
+
+  /* Static brand scale (electric blue) */
+  --color-brand-50: #eef6ff;
+  --color-brand-100: #d9ecff;
+  --color-brand-200: #b6d8ff;
+  --color-brand-300: #86bcff;
+  --color-brand-400: #4f97ff;
+  --color-brand-500: #2b7bf0;
+  --color-brand-600: #0b6bcb;
+  --color-brand-700: #0a55a3;
+  --color-brand-800: #0d477f;
+  --color-brand-900: #0f3a64;
+
+  /* Voltage amber (converter / caution) */
+  --color-volt-400: #ffb020;
+  --color-volt-500: #f59e0b;
+  --color-volt-600: #d97706;
+
+  /* Semantics that flip with .dark (defined in :root / .dark below) */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+}
+
+:root {
+  --bg: #f5f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef2f9;
+  --text: #0e1726;
+  --muted: #566379;
+  --border: #e1e8f2;
+  --good: #15803d;
+  --bad: #dc2626;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0a1120;
+  --surface: #121c30;
+  --surface-2: #0e1728;
+  --text: #e9eef8;
+  --muted: #94a6c0;
+  --border: #223049;
+  --good: #34d399;
+  --bad: #f87171;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ── Small component helpers ──────────────────────────────────────────────*/
+@layer components {
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md border border-border bg-surface2
+      px-2 py-0.5 font-mono text-sm font-medium;
+  }
+  .card {
+    @apply rounded-2xl border border-border bg-surface p-5 shadow-sm;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors bg-brand-600 text-white hover:bg-brand-700;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors border border-border bg-surface hover:bg-surface2;
+  }
+  .prose-link {
+    @apply text-brand-600 underline decoration-brand-300 underline-offset-2
+      hover:decoration-brand-600 dark:text-brand-300;
+  }
+}

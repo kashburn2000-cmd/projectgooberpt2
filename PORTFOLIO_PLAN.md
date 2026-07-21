@@ -1,0 +1,58 @@
+# Portfolio build plan & status
+
+Persistent task list (survives across work sessions). Update as things land.
+
+## Decisions (locked)
+- **Portfolio shape:** independent standalone properties (distinct niches; separate CF Pages projects, one monorepo, one branch).
+- **Reveal:** revealed up front.
+- **Budget:** $0/month for all three (free public data, committed snapshots, GitHub Actions free tier). No paid infra pending.
+- **Stack:** Astro 7 (static) + Preact islands + Tailwind 4 + `@astrojs/sitemap`. Node ≥ 22.12.
+- **Branch:** `claude/portfolio-website-concepts-5enr2z`.
+
+## Monorepo layout
+```
+sites/adapters   → Site 1  Travel adapters (placeholder brand: Voltroam)
+sites/airfryer   → Site 2  Air-fryer cook times (placeholder brand: Crisply)   [pending]
+sites/bizdays    → Site 3  Business-days/holidays (placeholder brand: Worktally) [pending]
+```
+Each is a standalone Astro project; deploy each as its own CF Pages project with root = its subdir.
+
+## Shared architecture (reusable across sites)
+- [x] Config constant (`src/config.ts`: SITE_NAME/SITE_URL/CONTACT_EMAIL/ADSENSE_PUB_ID)
+- [x] AdSlot (renders nothing until pub id) + Consent Mode v2 + cookie banner
+- [x] Seo.astro (title/meta/canonical/OG/JSON-LD) + Base layout
+- [x] Header/Footer, light+dark (no-FOUC theme init), a11y skip link
+- [x] robots.txt + ads.txt dynamic endpoints, sitemap-index
+- [ ] OG image generation (satori + resvg) per page type
+- [ ] GitHub Action for data refresh (where applicable)
+
+## Site 1 — Travel adapters (`sites/adapters`)
+- [x] Data pipeline: IEC plug CSV + ISO regions → `countries.json` (218 countries), committed snapshots + provenance
+- [x] Domain model: plugTypes A–N + compatibility matrix, adapter/converter logic
+- [x] Homepage with RouteFinder island + FAQ/JSON-LD — **builds green**
+- [ ] `/country/[slug]` — 218 pages (unique data, FAQs, JSON-LD, internal links)
+- [ ] `/adapter/[from]-to-[to]` — popular origin × all dest route mesh (~1,500 pages)
+- [ ] `/plug-types` + `/plug-types/[id]` — 14 pages
+- [ ] `/region/[region]` — 5 pages
+- [ ] `/countries` index
+- [ ] 12–15 editorial guides (`/guides`)
+- [ ] Trust pages: about, methodology, contact, privacy, terms
+- [ ] 404, OG images, README launch checklist
+- [ ] Final production build + Lighthouse sanity
+
+## Site 2 — Air-fryer cook times (`sites/airfryer`)  [not started]
+- [ ] Source USDA safe temps + compile cook-time ranges w/ citations (committed snapshot)
+- [ ] Timer island, from-frozen/fresh toggle
+- [ ] food × appliance programmatic pages, guides, trust pages, OG, README
+
+## Site 3 — Business-days/holidays (`sites/bizdays`)  [not started]
+- [ ] Nager.Date snapshot + annual refresh Action w/ committed fallback
+- [ ] Business-day calculator island, per-country/year pages, cross-country overlap
+- [ ] guides, trust pages, OG, README
+
+## Deliverables checklist (per site)
+- [ ] Full codebase on branch
+- [ ] README with dumbed-down launch checklist (domain → CF Pages → DNS/redirect → data secret → GSC → when to apply to AdSense) + deploy gotchas
+- [ ] Distinct visual identity (palette + type, light+dark, responsive, a11y)
+- [ ] Programmatic pages with unique data + FAQs + dense internal links
+- [ ] Per-page title/meta/H1, JSON-LD, partitioned sitemap, robots, canonicals, per-type OG
