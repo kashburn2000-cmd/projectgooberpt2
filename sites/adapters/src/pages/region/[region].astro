@@ -1,0 +1,118 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { COUNTRIES, REGION_ORDER, type Country } from "../../data/countries";
+import { flag } from "../../lib/util";
+import { breadcrumbLd, faqLd } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return REGION_ORDER.map((region) => ({
+    params: { region: region.toLowerCase() },
+    props: {
+      region,
+      countries: COUNTRIES.filter((c) => c.region === region).sort((a, b) =>
+        a.name.localeCompare(b.name),
+      ),
+    },
+  }));
+}
+
+const { region, countries } = Astro.props as { region: string; countries: Country[] };
+
+const mode = <T,>(arr: T[]): T =>
+  [...new Set(arr)].sort(
+    (a, b) => arr.filter((x) => x === b).length - arr.filter((x) => x === a).length,
+  )[0];
+
+const commonVoltage = mode(countries.map((c) => c.voltage));
+const commonPlug = mode(countries.flatMap((c) => c.plugs));
+const voltageSet = [...new Set(countries.map((c) => c.voltage))].sort((a, b) => a - b);
+
+const faqs = [
+  {
+    q: `What plug type is most common in ${region}?`,
+    a: `Across ${region}, Type ${commonPlug} is the most widely used plug/socket. Individual countries vary, so always check the specific destination.`,
+  },
+  {
+    q: `What voltage is used in ${region}?`,
+    a: `Most of ${region} runs at ${commonVoltage} V. The full range seen in the region is ${voltageSet.map((v) => v + "V").join(", ")}.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: region, path: `/region/${region.toLowerCase()}` }]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title={`Travel Adapters & Plugs in ${region} — Voltage by Country`}
+  description={`Plug types and voltage for every country in ${region}. Most of ${region} uses Type ${commonPlug} plugs at ${commonVoltage}V. Find the adapter you need.`}
+  image="/og/country.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: region }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      Travel adapters & plugs in {region}
+    </h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted">
+      {countries.length} countries. Most of {region} uses
+      <span class="chip">Type {commonPlug}</span> plugs at
+      <span class="font-semibold text-text">{commonVoltage} V</span>, but it pays to
+      check each destination.
+    </p>
+
+    <AdSlot slot="" />
+
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-border">
+      <table class="w-full min-w-[480px] text-left text-sm">
+        <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+          <tr>
+            <th class="px-4 py-3 font-semibold">Country</th>
+            <th class="px-4 py-3 font-semibold">Plugs</th>
+            <th class="px-4 py-3 font-semibold">Voltage</th>
+            <th class="px-4 py-3 font-semibold">Freq.</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          {countries.map((c) => (
+            <tr class="bg-surface hover:bg-surface2">
+              <td class="px-4 py-3 font-medium">
+                <a href={`/country/${c.slug}`} class="hover:text-brand-600 dark:hover:text-brand-300">
+                  {flag(c.code)} {c.name}
+                </a>
+              </td>
+              <td class="px-4 py-3 font-mono">{c.plugs.join(", ")}</td>
+              <td class="px-4 py-3 font-mono">{c.voltage} V</td>
+              <td class="px-4 py-3 font-mono">{c.frequency} Hz</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-bold tracking-tight">{region} power FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-8 flex flex-wrap gap-2 text-sm">
+      {REGION_ORDER.filter((r) => r !== region).map((r) => (
+        <a href={`/region/${r.toLowerCase()}`} class="chip hover:border-brand-400">{r}</a>
+      ))}
+      <a href="/countries" class="prose-link ml-1 self-center">All countries →</a>
+    </div>
+  </div>
+</Base>

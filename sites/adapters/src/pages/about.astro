@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { COUNTRIES } from "../data/countries";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+  {
+    "@type": "Organization",
+    name: SITE.SITE_NAME,
+    url: SITE.SITE_URL,
+    email: SITE.CONTACT_EMAIL,
+    description: `A free reference for travel plug adapters and voltage across ${COUNTRIES.length} countries.`,
+  },
+];
+---
+
+<Base
+  title={`About ${SITE.SITE_NAME}`}
+  description={`Why ${SITE.SITE_NAME} exists, who it's for, and how we keep our travel-electricity data accurate.`}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "About" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      About {SITE.SITE_NAME}
+    </h1>
+    <div class="prose mt-6">
+      <p>
+        {SITE.SITE_NAME} answers one deceptively tricky question as clearly as
+        possible: <strong>"do I need a travel adapter — and will my devices actually
+        work?"</strong> For any of {COUNTRIES.length} countries, and for your
+        specific route, we tell you whether to pack a plug adapter, a voltage
+        converter, or nothing at all.
+      </p>
+
+      <h2>Why we built it</h2>
+      <p>
+        Search "travel adapter for Japan" and you'll get two kinds of results:
+        dense reference tables that never quite answer <em>your</em> question, and
+        listicles trying to sell you a gadget. Neither tells a traveler from a
+        specific country, in one glance, what they need. So we built a tool that
+        does — grounded in real standards data, not guesswork.
+      </p>
+
+      <h2>What makes it trustworthy</h2>
+      <ul>
+        <li><strong>Real source data.</strong> Plug types, voltage and frequency come from published IEC and ISO reference data, not crowd-sourced guesses. See our <a href="/methodology">methodology</a>.</li>
+        <li><strong>Physics, stated plainly.</strong> We separate plug <em>shape</em> (adapters) from <em>voltage</em> (converters), the distinction that trips up most travelers.</li>
+        <li><strong>No dark patterns.</strong> We don't gate answers behind an email, and the tool works the same whether or not you ever buy anything.</li>
+        <li><strong>We show our work.</strong> Every verdict is reproducible from the numbers on each country page.</li>
+      </ul>
+
+      <h2>Important caveat</h2>
+      <p>
+        We're a reference, not a guarantee. National standards have regional
+        exceptions and change over time, and your <em>specific device</em> always
+        has the final say — so read its label and, when in doubt, verify before you
+        plug in. If you spot something wrong, please <a href="/contact">tell us</a>;
+        corrections make the whole thing better.
+      </p>
+
+      <p>
+        Ready to check a trip? <a href="/">Start with the route checker →</a>
+      </p>
+    </div>
+  </div>
+</Base>

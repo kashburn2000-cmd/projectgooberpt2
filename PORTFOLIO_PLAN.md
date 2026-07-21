@@ -26,19 +26,20 @@ Each is a standalone Astro project; deploy each as its own CF Pages project with
 - [ ] OG image generation (satori + resvg) per page type
 - [ ] GitHub Action for data refresh (where applicable)
 
-## Site 1 — Travel adapters (`sites/adapters`)
+## Site 1 — Travel adapters (`sites/adapters`)  ✅ COMPLETE
 - [x] Data pipeline: IEC plug CSV + ISO regions → `countries.json` (218 countries), committed snapshots + provenance
 - [x] Domain model: plugTypes A–N + compatibility matrix, adapter/converter logic
-- [x] Homepage with RouteFinder island + FAQ/JSON-LD — **builds green**
-- [ ] `/country/[slug]` — 218 pages (unique data, FAQs, JSON-LD, internal links)
-- [ ] `/adapter/[from]-to-[to]` — popular origin × all dest route mesh (~1,500 pages)
-- [ ] `/plug-types` + `/plug-types/[id]` — 14 pages
-- [ ] `/region/[region]` — 5 pages
-- [ ] `/countries` index
-- [ ] 12–15 editorial guides (`/guides`)
-- [ ] Trust pages: about, methodology, contact, privacy, terms
-- [ ] 404, OG images, README launch checklist
-- [ ] Final production build + Lighthouse sanity
+- [x] Homepage with RouteFinder island + FAQ/JSON-LD
+- [x] `/country/[slug]` — 218 pages (unique data, per-origin table, FAQs, JSON-LD, internal links)
+- [x] `/adapter/[from]-to-[to]` — 1,519 route pages (popular origins × all dests)
+- [x] `/plug-types` + `/plug-types/[id]` — 14 + index
+- [x] `/region/[region]` — 5 pages
+- [x] `/countries` index (with filter)
+- [x] 13 editorial guides (`/guides`) — 3 authored + 10 via briefed subagents, fact-checked
+- [x] Trust pages: about, methodology, contact, privacy, terms
+- [x] 404, per-type OG images (satori+resvg), README launch checklist
+- [x] Data-refresh GitHub Action (re-fetch upstream + committed fallback)
+- [x] Production build green (1,780 pages, 5s); all 64k internal links resolve
 
 ## Site 2 — Air-fryer cook times (`sites/airfryer`)  [not started]
 - [ ] Source USDA safe temps + compile cook-time ranges w/ citations (committed snapshot)

@@ -1,0 +1,63 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { COUNTRIES } from "../data/countries";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "Methodology", path: "/methodology" }]),
+];
+---
+
+<Base
+  title={`Methodology & Data Sources — ${SITE.SITE_NAME}`}
+  description="Where our plug, voltage and frequency data comes from, how the adapter and converter logic works, and the limits of the data."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Methodology" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      Methodology & data sources
+    </h1>
+    <div class="prose mt-6">
+      <p>
+        We think a reference site should be transparent about where its numbers come
+        from. Here's exactly how {SITE.SITE_NAME} is built.
+      </p>
+
+      <h2>Where the data comes from</h2>
+      <ul>
+        <li><strong>Plug/socket types, voltage and frequency</strong> for all {COUNTRIES.length} countries are derived from the International Electrotechnical Commission (IEC) "World Plugs" reference dataset, mapped onto ISO&nbsp;3166 country names and regions.</li>
+        <li>The dataset is <strong>committed as a static snapshot</strong> in our source repository. The site builds entirely from that snapshot — it never depends on a live third-party API at request time, so pages are always fast and never break because someone else's server went down.</li>
+      </ul>
+
+      <h2>How the adapter verdict is calculated</h2>
+      <p>Each country lists the plug/socket types it uses. To decide whether you need a plug adapter for a route, we check a simple, physical question:</p>
+      <ul>
+        <li><strong>Plug fit.</strong> Does any plug type from your home country physically fit any socket type at your destination? We use the established IEC compatibility relationships (for example, a Type&nbsp;C "Europlug" fits Type&nbsp;E, F, J, K, L and N sockets). If nothing fits, you need an adapter.</li>
+        <li><strong>Voltage.</strong> We group countries into two bands — 100–127&nbsp;V and 220–240&nbsp;V. If your home and destination are in different bands, single-voltage devices need a converter; dual-voltage devices (100–240&nbsp;V) don't.</li>
+        <li><strong>Frequency.</strong> We flag a 50&nbsp;Hz vs 60&nbsp;Hz difference, which matters only for a small class of motor- and clock-based devices.</li>
+      </ul>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li><strong>National standards have exceptions.</strong> Some countries list a single nominal voltage even though certain regions or older buildings differ (Brazil is a well-known example). We show the national standard; always sanity-check locally.</li>
+        <li><strong>Plug fit is about shape, not safety.</strong> A plug fitting a socket does not by itself mean a device is safe to use — voltage still has to match.</li>
+        <li><strong>Your device is the final authority.</strong> The label on your charger overrides any general guidance here.</li>
+      </ul>
+
+      <h2>Updates & corrections</h2>
+      <p>
+        National plug and voltage standards change rarely, so this data is stable by
+        nature. We periodically re-check the snapshot against the source. If you
+        believe a value is wrong, please <a href="/contact">contact us</a> with the
+        country and the correction — we take accuracy seriously and update promptly.
+      </p>
+
+      <p class="text-sm">
+        <em>{SITE.SITE_NAME} is an independent reference and is not affiliated with the IEC, ISO, or any adapter manufacturer.</em>
+      </p>
+    </div>
+  </div>
+</Base>

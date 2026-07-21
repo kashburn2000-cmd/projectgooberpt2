@@ -1,0 +1,55 @@
+name: Refresh adapter data (Voltroam)
+
+# Plug/voltage standards are evergreen, so this runs quarterly (and on demand).
+# It re-fetches the upstream IEC-derived snapshot; if the fetch fails, it falls
+# back to the committed snapshot so the build is never broken by an outage.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 1 1,4,7,10 *" # 06:00 UTC on the 1st of Jan/Apr/Jul/Oct
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/adapters
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh upstream snapshot (with committed fallback)
+        run: |
+          URL="https://raw.githubusercontent.com/benjiao/world-plugs/master/world-plugs.csv"
+          if curl -fsSL "$URL" -o /tmp/world-plugs.csv && [ -s /tmp/world-plugs.csv ]; then
+            echo "Fetched upstream snapshot ($(wc -l < /tmp/world-plugs.csv) lines)."
+            cp /tmp/world-plugs.csv src/data/sources/world-plugs.iec.csv
+          else
+            echo "Upstream fetch failed — keeping committed snapshot."
+          fi
+
+      - name: Install & regenerate dataset
+        run: |
+          npm ci
+          npm run data
+
+      - name: Verify the site still builds
+        run: npm run build
+
+      - name: Commit changes if the data moved
+        run: |
+          if [ -n "$(git status --porcelain src/data/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add src/data/
+            git commit -m "chore(adapters): refresh plug/voltage dataset"
+            git push
+          else
+            echo "No data changes."
+          fi

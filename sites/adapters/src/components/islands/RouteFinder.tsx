@@ -1,11 +1,14 @@
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import { adapterAdvice, plugList, bandLabel } from "../../lib/adapter";
 import { PLUG_TYPES } from "../../data/plugTypes";
 import type { Country } from "../../data/countries";
 import { flag } from "../../lib/util";
 
 interface Props {
-  countries: Country[];
+  /** Pass inline for instant interactivity (homepage), or omit and set `src`. */
+  countries?: Country[];
+  /** URL of the shared slim country JSON to fetch when `countries` is not given. */
+  src?: string;
   initialFrom?: string;
   initialTo?: string;
 }
@@ -13,10 +16,22 @@ interface Props {
 const REGION_ORDER = ["Europe", "Asia", "Africa", "Americas", "Oceania"];
 
 export default function RouteFinder({
-  countries,
+  countries: inlineCountries,
+  src,
   initialFrom = "US",
   initialTo = "",
 }: Props) {
+  const [fetched, setFetched] = useState<Country[] | null>(inlineCountries ?? null);
+  useEffect(() => {
+    if (!inlineCountries && src) {
+      fetch(src)
+        .then((r) => r.json())
+        .then((d: Country[]) => setFetched(d))
+        .catch(() => setFetched([]));
+    }
+  }, [src]);
+  const countries = fetched ?? [];
+
   const byCode = useMemo(
     () => new Map(countries.map((c) => [c.code, c])),
     [countries],
@@ -33,6 +48,8 @@ export default function RouteFinder({
 
   const [from, setFrom] = useState(initialFrom);
   const [to, setTo] = useState(initialTo);
+
+  const loading = fetched === null;
 
   const home = byCode.get(from);
   const dest = byCode.get(to);
@@ -84,6 +101,17 @@ export default function RouteFinder({
       </select>
     </label>
   );
+
+  if (loading) {
+    return (
+      <div class="rounded-3xl border-2 border-border bg-surface p-5 shadow-lg sm:p-6">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end">
+          <div class="h-[70px] flex-1 animate-pulse rounded-xl bg-surface2"></div>
+          <div class="h-[70px] flex-1 animate-pulse rounded-xl bg-surface2"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div class={`rounded-3xl border-2 bg-surface p-5 shadow-lg sm:p-6 ${toneRing}`}>

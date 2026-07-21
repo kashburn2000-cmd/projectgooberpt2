@@ -1,0 +1,32 @@
+---
+import type { Crumb } from "../lib/seo";
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-4">
+  <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted">
+    {
+      items.map((it, i) => (
+        <li class="flex items-center gap-1.5">
+          {i > 0 && (
+            <span aria-hidden="true" class="text-border">
+              /
+            </span>
+          )}
+          {it.path ? (
+            <a href={it.path} class="hover:text-brand-600 dark:hover:text-brand-300">
+              {it.name}
+            </a>
+          ) : (
+            <span class="font-medium text-text" aria-current="page">
+              {it.name}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

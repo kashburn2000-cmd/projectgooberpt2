@@ -128,3 +128,51 @@
       hover:decoration-brand-600 dark:text-brand-300;
   }
 }
+
+/* ── Long-form article typography (no plugin, keeps the bundle lean) ─────────*/
+.prose {
+  @apply text-[1.05rem] leading-relaxed text-text;
+}
+.prose > * + * {
+  @apply mt-5;
+}
+.prose h2 {
+  @apply mt-10 mb-3 text-2xl font-bold tracking-tight;
+}
+.prose h3 {
+  @apply mt-8 mb-2 text-xl font-semibold tracking-tight;
+}
+.prose p,
+.prose ul,
+.prose ol {
+  @apply text-text/90;
+}
+.prose ul {
+  @apply list-disc space-y-1.5 pl-6;
+}
+.prose ol {
+  @apply list-decimal space-y-1.5 pl-6;
+}
+.prose a {
+  @apply text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 dark:text-brand-300;
+}
+.prose strong {
+  @apply font-semibold text-text;
+}
+.prose blockquote {
+  @apply border-l-4 border-brand-300 pl-4 italic text-muted;
+}
+.prose code {
+  @apply rounded bg-surface2 px-1.5 py-0.5 font-mono text-[0.9em];
+}
+.prose table {
+  @apply w-full border-collapse text-left text-sm;
+}
+.prose th,
+.prose td {
+  @apply border border-border px-3 py-2;
+}
+.prose th {
+  @apply bg-surface2 font-semibold;
+}
+

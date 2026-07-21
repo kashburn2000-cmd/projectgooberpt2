@@ -5,7 +5,7 @@
 // Sources (committed under src/data/sources/):
 //   - world-plugs.iec.csv : plug type, voltage, frequency per country (IEC World Plugs)
 //   - iso-3166.json       : ISO 3166-1 names, codes, region / sub-region
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -113,6 +113,15 @@ for (const rec of byCountry.values()) {
 countries.sort((a, b) => a.name.localeCompare(b.name));
 
 writeFileSync(join(SRC, "countries.json"), JSON.stringify(countries, null, 2) + "\n");
+
+// Slim, single cached file the browser downloads once for the route-finder island
+// (keeps every one of the ~1,700 pages lean instead of inlining the country list).
+const PUB = join(__dirname, "..", "public", "data");
+mkdirSync(PUB, { recursive: true });
+const slim = countries.map(({ code, name, slug, region, plugs, voltage, frequency }) => ({
+  code, name, slug, region, plugs, voltage, frequency,
+}));
+writeFileSync(join(PUB, "countries.slim.json"), JSON.stringify(slim));
 
 // --- Report ---
 const regions = {};

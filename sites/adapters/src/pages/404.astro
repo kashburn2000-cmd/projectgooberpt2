@@ -1,0 +1,34 @@
+---
+import Base from "../layouts/Base.astro";
+import { popularDestinations } from "../data/countries";
+import { flag } from "../lib/util";
+const dests = popularDestinations().slice(0, 8);
+---
+
+<Base
+  title="Page not found"
+  description="That page doesn't exist. Head back to the route checker or browse countries."
+  noindex={true}
+>
+  <div class="mx-auto max-w-2xl px-4 py-16 text-center">
+    <div class="font-mono text-6xl font-extrabold text-brand-600 dark:text-brand-400">404</div>
+    <h1 class="mt-4 text-2xl font-bold tracking-tight">This socket's empty</h1>
+    <p class="mt-2 text-muted">
+      We couldn't find that page. Try the route checker, or jump to a popular
+      destination below.
+    </p>
+    <div class="mt-6 flex justify-center gap-2">
+      <a href="/" class="btn-primary">Route checker</a>
+      <a href="/countries" class="btn-ghost">All countries</a>
+    </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-2">
+      {
+        dests.map((c) => (
+          <a href={`/country/${c.slug}`} class="chip hover:border-brand-400">
+            {flag(c.code)} {c.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>

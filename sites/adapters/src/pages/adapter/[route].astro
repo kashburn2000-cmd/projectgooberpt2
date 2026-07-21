@@ -1,0 +1,177 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import {
+  COUNTRIES,
+  COUNTRY_BY_CODE,
+  POPULAR_ORIGIN_CODES,
+  type Country,
+} from "../../data/countries";
+import { PLUG_TYPES } from "../../data/plugTypes";
+import { adapterAdvice, plugList, bandLabel } from "../../lib/adapter";
+import { flag } from "../../lib/util";
+import { breadcrumbLd, faqLd } from "../../lib/seo";
+
+export function getStaticPaths() {
+  const origins = POPULAR_ORIGIN_CODES.map((c) => COUNTRY_BY_CODE.get(c)!).filter(Boolean);
+  const paths = [];
+  for (const home of origins) {
+    for (const dest of COUNTRIES) {
+      if (dest.code === home.code) continue;
+      paths.push({
+        params: { route: `${home.slug}-to-${dest.slug}` },
+        props: { home, dest },
+      });
+    }
+  }
+  return paths;
+}
+
+const { home, dest } = Astro.props as { home: Country; dest: Country };
+const advice = adapterAdvice(home, dest);
+
+const faqs = [
+  {
+    q: `Do I need a plug adapter to travel from ${home.name} to ${dest.name}?`,
+    a: advice.adapterNeeded
+      ? `Yes. ${dest.name} uses ${plugList(dest.plugs)} sockets, which don't accept ${home.name}'s ${plugList(home.plugs)} plugs, so you need a plug adapter.`
+      : `No. Your ${plugList(advice.compatiblePlugs)} plug from ${home.name} physically fits ${dest.name}'s sockets, so no plug adapter is required.`,
+  },
+  {
+    q: `Do I need a voltage converter from ${home.name} to ${dest.name}?`,
+    a: advice.converterNeeded
+      ? `Only for single-voltage devices. ${home.name} is ${home.voltage} V and ${dest.name} is ${dest.voltage} V — different bands. Dual-voltage electronics (marked 100–240V, like most phone and laptop chargers) are fine; single-voltage items like hair dryers need a converter.`
+      : `No. Both ${home.name} (${home.voltage} V) and ${dest.name} (${dest.voltage} V) are in the same voltage band, so a converter isn't needed.`,
+  },
+  {
+    q: `Will my phone charger work in ${dest.name}?`,
+    a: `Almost certainly yes. Check the charger for "100–240V" — if present it's dual-voltage and works in ${dest.name} with ${advice.adapterNeeded ? "just a plug adapter" : "no adapter at all"}.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Routes", path: "/adapter" },
+    { name: `${home.name} to ${dest.name}`, path: `/adapter/${home.slug}-to-${dest.slug}` },
+  ]),
+  faqLd(faqs),
+];
+
+const title = `${home.name} to ${dest.name}: Do You Need a Travel Adapter?`;
+const description = `Travelling from ${home.name} to ${dest.name}? ${advice.headline} ${dest.name} uses ${plugList(dest.plugs)} at ${dest.voltage}V.`;
+
+const packList = [
+  {
+    ok: !advice.adapterNeeded,
+    title: advice.adapterNeeded ? `A Type ${dest.plugs[0]} plug adapter` : "No plug adapter needed",
+    detail: advice.adapterNeeded
+      ? `${dest.name} sockets are ${plugList(dest.plugs)}. A universal adapter also works.`
+      : `Your ${plugList(advice.compatiblePlugs)} plug fits ${dest.name} sockets.`,
+  },
+  {
+    ok: !advice.converterNeeded,
+    title: advice.converterNeeded ? "A voltage converter (single-voltage devices only)" : "No voltage converter needed",
+    detail: advice.converterNeeded
+      ? `${dest.name} is ${dest.voltage} V vs your ${home.voltage} V. Dual-voltage gear is safe; convert single-voltage devices.`
+      : `Voltage matches (${home.voltage} V ≈ ${dest.voltage} V).`,
+  },
+  {
+    ok: advice.sameFrequency,
+    title: advice.sameFrequency ? `Same frequency (${dest.frequency} Hz)` : `Note: ${dest.frequency} Hz vs ${home.frequency} Hz`,
+    detail: advice.sameFrequency
+      ? "No frequency difference to worry about."
+      : "Irrelevant for electronics; only affects some motors and mechanical clocks.",
+  },
+];
+---
+
+<Base title={title} description={description} image="/og/route.png" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs
+      items={[
+        { name: "Home", path: "/" },
+        { name: "Routes", path: "/adapter" },
+        { name: `${home.name} → ${dest.name}` },
+      ]}
+    />
+
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      {flag(home.code)} {home.name} → {flag(dest.code)} {dest.name}: travel adapter guide
+    </h1>
+
+    <div
+      class={`mt-5 rounded-2xl border-2 p-5 ${
+        advice.adapterNeeded && advice.converterNeeded
+          ? "border-volt-500/50 bg-volt-500/10"
+          : !advice.adapterNeeded && advice.sameVoltage
+            ? "border-good/40 bg-good/10"
+            : "border-brand-400/50 bg-brand-500/10"
+      }`}
+    >
+      <p class="text-lg font-semibold leading-snug">{advice.headline}</p>
+    </div>
+
+    <!-- What to pack -->
+    <section class="mt-6">
+      <h2 class="text-xl font-bold tracking-tight">What to pack</h2>
+      <ul class="mt-3 space-y-2">
+        {packList.map((p) => (
+          <li class="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">
+            <span class={`mt-0.5 shrink-0 ${p.ok ? "text-good" : "text-volt-600"}`} aria-hidden="true">
+              {p.ok ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+              )}
+            </span>
+            <span>
+              <span class="font-semibold">{p.title}</span>
+              <span class="block text-sm text-muted">{p.detail}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <AdSlot slot="" />
+
+    <!-- Comparison -->
+    <section class="mt-6 grid gap-3 sm:grid-cols-2">
+      {[home, dest].map((c, i) => (
+        <div class="rounded-2xl border border-border bg-surface p-5">
+          <div class="text-xs font-semibold uppercase tracking-wide text-muted">{i === 0 ? "From" : "To"}</div>
+          <a href={`/country/${c.slug}`} class="mt-1 block text-lg font-bold hover:text-brand-600">{flag(c.code)} {c.name}</a>
+          <dl class="mt-2 space-y-1 text-sm">
+            <div class="flex justify-between"><dt class="text-muted">Plugs</dt><dd class="font-mono">{c.plugs.join(", ")}</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Voltage</dt><dd class="font-mono">{c.voltage} V</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Frequency</dt><dd class="font-mono">{c.frequency} Hz</dd></div>
+          </dl>
+        </div>
+      ))}
+    </section>
+
+    <!-- FAQ -->
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-8 flex flex-wrap gap-2 text-sm">
+      <a href={`/country/${dest.slug}`} class="prose-link">All about {dest.name} →</a>
+      <span class="text-border">·</span>
+      <a href="/adapter" class="prose-link">More routes →</a>
+    </div>
+  </div>
+</Base>

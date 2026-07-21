@@ -1,0 +1,146 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import {
+  PLUG_TYPES,
+  ALL_PLUG_IDS,
+  plugFitsSocket,
+  type PlugId,
+} from "../../data/plugTypes";
+import { COUNTRIES } from "../../data/countries";
+import { flag } from "../../lib/util";
+import { breadcrumbLd, faqLd } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return ALL_PLUG_IDS.map((id) => ({ params: { id: id.toLowerCase() }, props: { id } }));
+}
+
+const { id } = Astro.props as { id: PlugId };
+const t = PLUG_TYPES[id];
+const countriesUsing = COUNTRIES.filter((c) => c.plugs.includes(id)).sort((a, b) =>
+  a.name.localeCompare(b.name),
+);
+// Sockets that accept a Type `id` plug (where you can plug in without an adapter):
+const acceptedBy = ALL_PLUG_IDS.filter((s) => plugFitsSocket(id, s));
+// Plugs that fit into a Type `id` socket:
+const fitsInto = t.socketAccepts;
+
+const faqs = [
+  {
+    q: `Where is the Type ${id} plug used?`,
+    a: `The Type ${id} plug (${t.standard}) is used in ${countriesUsing.length} countries, including ${countriesUsing.slice(0, 6).map((c) => c.name).join(", ")}${countriesUsing.length > 6 ? " and more" : ""}. It is common in ${t.commonIn}.`,
+  },
+  {
+    q: `Is the Type ${id} plug grounded?`,
+    a: `Type ${id} is ${t.grounded ? "grounded (earthed)" : "ungrounded — it has no earth pin"}. It has ${t.pins}.`,
+  },
+  {
+    q: `Does a Type ${id} plug fit other sockets?`,
+    a: `A Type ${id} plug fits ${acceptedBy.length > 1 ? `Type ${acceptedBy.join(", ")} sockets` : `only Type ${id} sockets`} without an adapter. For anything else you'll need a plug adapter.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Plug types", path: "/plug-types" },
+    { name: `Type ${id}`, path: `/plug-types/${id.toLowerCase()}` },
+  ]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title={`Type ${id} Plug (${t.standard}) — Countries, Voltage & Compatibility`}
+  description={`The Type ${id} plug: ${t.pins}, ${t.grounded ? "grounded" : "ungrounded"}, used in ${countriesUsing.length} countries. See where it's used and which sockets accept it.`}
+  image="/og/plug.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs
+      items={[
+        { name: "Home", path: "/" },
+        { name: "Plug types", path: "/plug-types" },
+        { name: `Type ${id}` },
+      ]}
+    />
+
+    <header class="flex items-center gap-4">
+      <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-brand-600/10 font-mono text-3xl font-bold text-brand-600 dark:text-brand-300">
+        {id}
+      </span>
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight">Type {id} plug</h1>
+        <p class="text-muted">{t.standard}</p>
+      </div>
+    </header>
+
+    <div class="mt-5 grid gap-3 sm:grid-cols-3">
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Pins</div><div class="mt-1 font-medium">{t.pins}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Earthing</div><div class="mt-1 font-medium">{t.grounded ? "Grounded" : "Ungrounded"}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Typical voltage</div><div class="mt-1 font-medium">{t.voltageBand === "low" ? "100–127 V" : t.voltageBand === "high" ? "220–240 V" : "100–240 V"}</div></div>
+    </div>
+
+    <p class="mt-5 text-lg text-muted">
+      The Type {id} plug has {t.pins} and is {t.grounded ? "grounded" : "ungrounded"}.
+      It's the {t.label}, common in {t.commonIn}.
+    </p>
+
+    <AdSlot slot="" />
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl border border-border bg-surface p-5">
+        <h2 class="font-bold">A Type {id} plug fits…</h2>
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          {acceptedBy.map((s) => (
+            <a href={`/plug-types/${s.toLowerCase()}`} class="chip hover:border-brand-400">Type {s} socket</a>
+          ))}
+        </div>
+        <p class="mt-2 text-sm text-muted">These sockets accept it without an adapter.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-5">
+        <h2 class="font-bold">A Type {id} socket accepts…</h2>
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          {fitsInto.map((s) => (
+            <a href={`/plug-types/${s.toLowerCase()}`} class="chip hover:border-brand-400">Type {s} plug</a>
+          ))}
+        </div>
+        <p class="mt-2 text-sm text-muted">Plugs that slot straight in.</p>
+      </div>
+    </div>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">Countries that use Type {id}</h2>
+      <p class="mt-1 text-muted">{countriesUsing.length} countries and territories:</p>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {countriesUsing.map((c) => (
+          <a href={`/country/${c.slug}`} class="chip hover:border-brand-400">{flag(c.code)} {c.name}</a>
+        ))}
+      </div>
+    </section>
+
+    <AdSlot slot="" />
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">Type {id} FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-8 flex flex-wrap gap-2 text-sm">
+      {ALL_PLUG_IDS.filter((x) => x !== id).map((x) => (
+        <a href={`/plug-types/${x.toLowerCase()}`} class="chip hover:border-brand-400">Type {x}</a>
+      ))}
+    </div>
+  </div>
+</Base>
