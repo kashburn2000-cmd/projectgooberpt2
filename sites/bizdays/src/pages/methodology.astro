@@ -1,0 +1,60 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { COUNTRIES, YEARS, GENERATED } from "../data/countries";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Methodology", path: "/methodology" }])];
+---
+
+<Base title={`Methodology & Data Sources — ${SITE.SITE_NAME}`} description="Where our public-holiday data comes from, how business days are calculated, how weekends are handled, and the limits of the data." jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Methodology" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Methodology & data sources</h1>
+    <div class="prose mt-6">
+      <p>A calculator is only as good as its data and its rules. Here's exactly how {SITE.SITE_NAME} works.</p>
+
+      <h2>Where the holiday data comes from</h2>
+      <ul>
+        <li><strong>Public holidays</strong> for {COUNTRIES.length} countries are generated from the open-source <code>date-holidays</code> dataset (MIT-licensed), which encodes each country's national public-holiday rules — including moveable feasts like Easter — and computes exact dates for any year.</li>
+        <li>We generate a <strong>committed snapshot</strong> covering {YEARS[0]}–{YEARS[YEARS.length - 1]} and the site builds entirely from it. There is no live API at request time, so pages are fast and never break. (Snapshot last generated {GENERATED}.)</li>
+        <li>Country names and regions are mapped from ISO&nbsp;3166.</li>
+      </ul>
+
+      <h2>How business days are calculated</h2>
+      <p>A day is a <strong>business (working) day</strong> when it is neither a weekend nor a public holiday for the selected country. From there:</p>
+      <ul>
+        <li><strong>Days between</strong> counts every working day from the start date through the end date, inclusive of both.</li>
+        <li><strong>Add / subtract</strong> steps forward or back from the start date, counting only working days, and begins counting the day <em>after</em> the start date.</li>
+      </ul>
+
+      <h2>How weekends are handled</h2>
+      <p>
+        The weekend is <strong>Saturday–Sunday by default</strong>. For countries
+        that conventionally rest on other days we apply an override — for example
+        Friday–Saturday across much of the Middle East, and Friday in Iran. Because
+        weekend rules vary locally and occasionally change, the calculator always
+        lets you <strong>set the weekend days yourself</strong>.
+      </p>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li><strong>National holidays only.</strong> Regional, state, provincial and local holidays are not included and can differ from the national list.</li>
+        <li><strong>Observed vs. actual.</strong> Some countries move a holiday's day off when it falls on a weekend ("in lieu"); coverage of substitute days varies by country in the source data.</li>
+        <li><strong>One-off days.</strong> Government-declared special holidays announced at short notice may not appear until the dataset is refreshed.</li>
+        <li><strong>Date range.</strong> Holiday data covers {YEARS[0]}–{YEARS[YEARS.length - 1]}. Outside that range the calculator still excludes weekends but not holidays.</li>
+      </ul>
+
+      <h2>Updates & corrections</h2>
+      <p>
+        A scheduled GitHub Action re-generates the snapshot each year (rolling the
+        window forward and picking up dataset fixes), with the committed file as a
+        fallback so a build never depends on anything live. Found a wrong or missing
+        date? <a href="/contact">Let us know</a> — accuracy is the point.
+      </p>
+
+      <p class="text-sm"><em>{SITE.SITE_NAME} is an independent tool and is not affiliated with any government or the maintainers of the datasets it uses.</em></p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]),
+  { "@type": "ContactPage", name: `Contact ${SITE.SITE_NAME}`, url: `${SITE.SITE_URL}/contact` },
+];
+---
+
+<Base
+  title={`Contact ${SITE.SITE_NAME}`}
+  description={`Get in touch with ${SITE.SITE_NAME} — report a data correction, ask a question, or send feedback.`}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Contact" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Contact us</h1>
+    <div class="prose mt-6">
+      <p>
+        Questions, feedback, or a data correction? We'd genuinely like to hear it —
+        especially if you've spotted a holiday date or weekend that looks off for a
+        country you know well.
+      </p>
+      <p>
+        Email us at
+        <a href={`mailto:${SITE.CONTACT_EMAIL}`}><strong>{SITE.CONTACT_EMAIL}</strong></a>.
+      </p>
+      <h2>Reporting a data correction</h2>
+      <p>To help us fix things fast, please include:</p>
+      <ul>
+        <li>The country (and region, if it varies locally)</li>
+        <li>What we show vs. what it should be (holiday date, name, or weekend)</li>
+        <li>A source we can verify against, if you have one</li>
+      </ul>
+      <p>
+        See how we source and calculate everything on our
+        <a href="/methodology">methodology page</a>.
+      </p>
+    </div>
+  </div>
+</Base>

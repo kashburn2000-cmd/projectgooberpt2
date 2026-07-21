@@ -1,0 +1,51 @@
+---
+// Render-blocking-safe inline scripts that must run before first paint:
+//  1. theme (set .dark from stored choice / system pref — no FOUC)
+//  2. Google Consent Mode v2 defaults (everything denied until the user opts in)
+// The AdSense library only loads when a publisher id is configured.
+import { SITE, hasAdsense } from "../config";
+const pub = SITE.ADSENSE_PUB_ID.trim();
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var s = localStorage.getItem("theme");
+      var dark = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    } catch (e) {}
+  })();
+</script>
+
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+    wait_for_update: 500,
+  });
+  try {
+    if (localStorage.getItem("consent") === "granted") {
+      gtag("consent", "update", {
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+        analytics_storage: "granted",
+      });
+    }
+  } catch (e) {}
+</script>
+
+{
+  hasAdsense() && (
+    <script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pub}`}
+      crossorigin="anonymous"
+    />
+  )
+}

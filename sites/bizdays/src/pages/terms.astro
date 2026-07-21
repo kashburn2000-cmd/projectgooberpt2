@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "Terms", path: "/terms" }]),
+];
+const effective = "July 2026";
+---
+
+<Base
+  title={`Terms of Use — ${SITE.SITE_NAME}`}
+  description={`The terms governing use of ${SITE.SITE_NAME}, including our accuracy disclaimer.`}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Terms" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Terms of use</h1>
+    <div class="prose mt-6">
+      <p class="text-sm text-muted">Effective {effective}</p>
+      <p>By using {SITE.SITE_NAME} you agree to these terms. If you don't agree, please don't use the site.</p>
+
+      <h2>Reference information, not a guarantee</h2>
+      <p>
+        {SITE.SITE_NAME} provides general reference information about public
+        holidays and business-day calculations by country. We work hard to keep it
+        accurate, but holiday lists and weekend conventions have regional
+        exceptions and change over time. <strong>The information is provided "as
+        is" without warranty of any kind.</strong> For binding deadlines — court
+        filings, payment terms, SLAs — always confirm against the official
+        government calendar for the jurisdiction. You are responsible for how you
+        use this information, and we are not liable for any loss arising from
+        reliance on it.
+      </p>
+
+      <h2>Acceptable use</h2>
+      <ul>
+        <li>Use the site for your own personal, non-commercial trip planning and reference.</li>
+        <li>Don't scrape, republish or resell the data or content in bulk without permission.</li>
+        <li>Don't attempt to disrupt or misuse the site.</li>
+      </ul>
+
+      <h2>Intellectual property</h2>
+      <p>
+        Underlying holiday data originates from open, publicly maintained sources.
+        The site's design, written guides and presentation are ours.
+      </p>
+
+      <h2>Third-party links & ads</h2>
+      <p>
+        We may link to third-party sites and display third-party ads. We're not
+        responsible for their content or practices; see our
+        <a href="/privacy">privacy policy</a> for how advertising works here.
+      </p>
+
+      <h2>Changes</h2>
+      <p>We may update these terms; continued use after changes means you accept them. <a href="/contact">Contact us</a> with any questions.</p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,47 @@
+name: Refresh holiday data (Worktally)
+
+# Rolls the holiday snapshot window forward each year and picks up upstream
+# dataset fixes. The committed JSON is the fallback, so a failed run never breaks
+# the build.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 2 1 *" # 05:00 UTC on 2 January each year
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/bizdays
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and update the holiday dataset
+        run: |
+          npm ci
+          npm update date-holidays
+
+      - name: Regenerate committed snapshot
+        run: npm run data
+
+      - name: Verify the site still builds
+        run: npm run build
+
+      - name: Commit changes if the data moved
+        run: |
+          if [ -n "$(git status --porcelain src/data/ public/data/ package-lock.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add src/data/ public/data/ package-lock.json
+            git commit -m "chore(bizdays): refresh holiday dataset"
+            git push
+          else
+            echo "No data changes."
+          fi

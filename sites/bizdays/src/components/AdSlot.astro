@@ -1,0 +1,45 @@
+---
+// An AdSense slot that renders NOTHING until a publisher id is set — so there
+// is zero layout shift and no empty boxes before monetization is live.
+// Once SITE.ADSENSE_PUB_ID is filled in, paste the ad SLOT id per placement.
+import { SITE, hasAdsense } from "../config";
+
+interface Props {
+  /** The AdSense ad-unit slot id (from your AdSense dashboard). */
+  slot?: string;
+  /** Layout hint. "in-article" for inside content, "display" for rails/blocks. */
+  format?: "auto" | "in-article" | "display";
+  /** Reserve a min-height so real ads don't shift content when they load. */
+  minHeight?: number;
+  label?: boolean;
+}
+const { slot = "", format = "auto", minHeight = 280, label = true } = Astro.props;
+const pub = SITE.ADSENSE_PUB_ID.trim();
+const show = hasAdsense();
+---
+
+{
+  show && (
+    <aside
+      class="my-8 flex flex-col items-center text-center"
+      aria-label="Advertisement"
+    >
+      {label && (
+        <span class="mb-1 text-[10px] font-medium uppercase tracking-widest text-muted">
+          Advertisement
+        </span>
+      )}
+      <ins
+        class="adsbygoogle block w-full"
+        style={`display:block;min-height:${minHeight}px`}
+        data-ad-client={pub}
+        data-ad-slot={slot}
+        data-ad-format={format === "display" ? "auto" : format}
+        data-full-width-responsive="true"
+      />
+      <script is:inline>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+  )
+}

@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+/* Manual dark mode via a .dark class on <html> (set before paint, no FOUC). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────────────────
+   Identity: "civic calendar" — indigo (structure/scheduling), emerald for
+   working days, rose for holidays/weekends, mono for dates & counts. */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo,
+    Consolas, monospace;
+
+  /* Static brand scale (indigo) */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  /* Working-day emerald */
+  --color-work-400: #34d399;
+  --color-work-500: #10b981;
+  --color-work-600: #059669;
+
+  /* Holiday / weekend rose */
+  --color-holiday-400: #fb7185;
+  --color-holiday-500: #f43f5e;
+  --color-holiday-600: #e11d48;
+
+  /* Semantics that flip with .dark (defined in :root / .dark below) */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+}
+
+:root {
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef1f8;
+  --text: #14162b;
+  --muted: #5a6178;
+  --border: #e3e7f1;
+  --good: #059669;
+  --bad: #e11d48;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0b0e1a;
+  --surface: #151a2e;
+  --surface-2: #10152a;
+  --text: #e9ecf8;
+  --muted: #98a1bd;
+  --border: #262d47;
+  --good: #34d399;
+  --bad: #fb7185;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md border border-border bg-surface2
+      px-2 py-0.5 font-mono text-sm font-medium;
+  }
+  .card {
+    @apply rounded-2xl border border-border bg-surface p-5 shadow-sm;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors bg-brand-600 text-white hover:bg-brand-700;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      font-semibold transition-colors border border-border bg-surface hover:bg-surface2;
+  }
+  .prose-link {
+    @apply text-brand-600 underline decoration-brand-300 underline-offset-2
+      hover:decoration-brand-600 dark:text-brand-300;
+  }
+}
+
+/* ── Long-form article typography ───────────────────────────────────────────*/
+.prose {
+  @apply text-[1.05rem] leading-relaxed text-text;
+}
+.prose > * + * {
+  @apply mt-5;
+}
+.prose h2 {
+  @apply mt-10 mb-3 text-2xl font-bold tracking-tight;
+}
+.prose h3 {
+  @apply mt-8 mb-2 text-xl font-semibold tracking-tight;
+}
+.prose p,
+.prose ul,
+.prose ol {
+  @apply text-text/90;
+}
+.prose ul {
+  @apply list-disc space-y-1.5 pl-6;
+}
+.prose ol {
+  @apply list-decimal space-y-1.5 pl-6;
+}
+.prose a {
+  @apply text-brand-600 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-600 dark:text-brand-300;
+}
+.prose strong {
+  @apply font-semibold text-text;
+}
+.prose blockquote {
+  @apply border-l-4 border-brand-300 pl-4 italic text-muted;
+}
+.prose code {
+  @apply rounded bg-surface2 px-1.5 py-0.5 font-mono text-[0.9em];
+}
+.prose table {
+  @apply w-full border-collapse text-left text-sm;
+}
+.prose th,
+.prose td {
+  @apply border border-border px-3 py-2;
+}
+.prose th {
+  @apply bg-surface2 font-semibold;
+}

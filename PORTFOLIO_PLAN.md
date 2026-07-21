@@ -46,10 +46,14 @@ Each is a standalone Astro project; deploy each as its own CF Pages project with
 - [ ] Timer island, from-frozen/fresh toggle
 - [ ] food × appliance programmatic pages, guides, trust pages, OG, README
 
-## Site 3 — Business-days/holidays (`sites/bizdays`)  [not started]
-- [ ] Nager.Date snapshot + annual refresh Action w/ committed fallback
-- [ ] Business-day calculator island, per-country/year pages, cross-country overlap
-- [ ] guides, trust pages, OG, README
+## Site 3 — Business-days/holidays (`sites/bizdays`)  ✅ COMPLETE (built 2nd)
+- [x] Data: `date-holidays` (open, MIT) → committed snapshot, 205 countries × 2024–2030 (18k+ holidays); per-country weekend map
+- [x] Business-day calculator island (days-between + add/subtract, editable weekend, on-demand holiday fetch)
+- [x] `/holidays/[country]` (205) + `/holidays/[country]/[year]` (~1,435) + `/business-days/[country]` (205, monthly working-day tables)
+- [x] `/holidays`, `/business-days`, `/countries` index hubs (distinct data angles)
+- [x] 12 guides (2 authored + 10 via briefed subagents, dates fact-checked, legal disclaimer)
+- [x] Trust pages, 404, per-type OG (indigo), README, annual data-refresh Action
+- [x] Build green (1,868 pages); all 84k internal links resolve
 
 ## Deliverables checklist (per site)
 - [ ] Full codebase on branch

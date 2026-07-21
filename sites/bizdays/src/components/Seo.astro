@@ -1,0 +1,63 @@
+---
+import { SITE } from "../config";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Canonical path (defaults to the current URL path). */
+  path?: string;
+  /** OG image path or absolute URL. */
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  /** JSON-LD objects to embed (FAQPage, BreadcrumbList, etc.). */
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  path,
+  image = "/og/default.png",
+  type = "website",
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const canonicalPath = path ?? Astro.url.pathname;
+const canonical = new URL(canonicalPath, SITE.SITE_URL).href.replace(
+  /(.)\/$/,
+  "$1",
+);
+const ogImage = image.startsWith("http")
+  ? image
+  : new URL(image, SITE.SITE_URL).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{
+  jsonLd.map((obj) => (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ "@context": "https://schema.org", ...obj })}
+    />
+  ))
+}

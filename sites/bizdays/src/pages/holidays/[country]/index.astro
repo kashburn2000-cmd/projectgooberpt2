@@ -1,0 +1,147 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import AdSlot from "../../../components/AdSlot.astro";
+import { COUNTRIES, YEARS, CURRENT_YEAR, COUNTRY_BY_CODE, type Country } from "../../../data/countries";
+import { getHolidays, holidaySet } from "../../../data/holidays";
+import { businessDaysInYear } from "../../../lib/bizdays";
+import { flag, formatDate, weekendLabel } from "../../../lib/util";
+import { breadcrumbLd, faqLd } from "../../../lib/seo";
+
+export function getStaticPaths() {
+  return COUNTRIES.map((c) => ({ params: { country: c.slug }, props: { country: c } }));
+}
+
+const { country } = Astro.props as { country: Country };
+const holsThisYear = getHolidays(country.code, CURRENT_YEAR);
+const stats = businessDaysInYear(CURRENT_YEAR, country.weekend, holidaySet(country.code, [CURRENT_YEAR]));
+
+const related = COUNTRIES.filter((c) => c.region === country.region && c.code !== country.code).slice(0, 10);
+
+const faqs = [
+  {
+    q: `How many public holidays does ${country.name} have in ${CURRENT_YEAR}?`,
+    a: `${country.name} has ${holsThisYear.length} national public holidays in ${CURRENT_YEAR}. Regional or local holidays may add to this in specific areas.`,
+  },
+  {
+    q: `How many working days are there in ${country.name} in ${CURRENT_YEAR}?`,
+    a: `There are ${stats.businessDays} working days in ${CURRENT_YEAR} in ${country.name}, after removing ${stats.weekendDays} weekend days and ${stats.holidayDays} public holidays that fall on a weekday.`,
+  },
+  {
+    q: `What is the weekend in ${country.name}?`,
+    a: `The usual weekend in ${country.name} is ${weekendLabel(country.weekend)}. Weekend conventions vary by country and can change, so verify locally for official purposes.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Public holidays", path: "/holidays" },
+    { name: country.name, path: `/holidays/${country.slug}` },
+  ]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title={`Public Holidays in ${country.name} ${CURRENT_YEAR} — Dates & Working Days`}
+  description={`All ${holsThisYear.length} public holidays in ${country.name} for ${CURRENT_YEAR}, plus working-day counts and past/future years. Weekend: ${weekendLabel(country.weekend)}.`}
+  image="/og/holidays.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs
+      items={[
+        { name: "Home", path: "/" },
+        { name: "Public holidays", path: "/holidays" },
+        { name: country.name },
+      ]}
+    />
+
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <span class="mr-1">{flag(country.code)}</span>
+      Public holidays in {country.name}
+    </h1>
+    <p class="mt-3 text-lg text-muted">
+      {country.name} has <span class="font-semibold text-text">{holsThisYear.length}</span> national
+      public holidays in {CURRENT_YEAR}. The weekend is {weekendLabel(country.weekend)}.
+    </p>
+
+    <div class="mt-5 grid gap-3 sm:grid-cols-3">
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Public holidays {CURRENT_YEAR}</div><div class="mt-1 font-mono text-2xl font-bold">{holsThisYear.length}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Working days {CURRENT_YEAR}</div><div class="mt-1 font-mono text-2xl font-bold text-work-600">{stats.businessDays}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Weekend</div><div class="mt-1 font-medium">{weekendLabel(country.weekend)}</div></div>
+    </div>
+
+    <!-- Year switcher -->
+    <div class="mt-5 flex flex-wrap gap-2">
+      {YEARS.map((y) => (
+        <a
+          href={`/holidays/${country.slug}/${y}`}
+          class:list={["chip hover:border-brand-400", y === CURRENT_YEAR && "border-brand-500 text-brand-600 dark:text-brand-300"]}
+        >
+          {y}
+        </a>
+      ))}
+    </div>
+
+    <AdSlot slot="" />
+
+    <!-- Current year table -->
+    <section class="mt-6">
+      <h2 class="text-2xl font-bold tracking-tight">{country.name} public holidays {CURRENT_YEAR}</h2>
+      <div class="mt-3 overflow-x-auto rounded-2xl border border-border">
+        <table class="w-full min-w-[420px] text-left text-sm">
+          <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+            <tr><th class="px-4 py-3 font-semibold">Date</th><th class="px-4 py-3 font-semibold">Holiday</th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            {holsThisYear.map((h) => (
+              <tr class="bg-surface">
+                <td class="whitespace-nowrap px-4 py-3 font-mono text-muted">{formatDate(h.date)}</td>
+                <td class="px-4 py-3 font-medium">{h.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-sm text-muted">
+        Need working-day math? Use the
+        <a href={`/business-days/${country.slug}`} class="prose-link">{country.name} business-day calculator</a>.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">{country.name} holidays FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="mt-10">
+      <h2 class="text-lg font-bold tracking-tight">Other countries in {country.region}</h2>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {related.map((c) => (
+          <a href={`/holidays/${c.slug}`} class="chip hover:border-brand-400">{flag(c.code)} {c.name}</a>
+        ))}
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2 text-sm">
+        <a href="/holidays" class="prose-link">All countries →</a>
+        <span class="text-border">·</span>
+        <a href={`/business-days/${country.slug}`} class="prose-link">{country.name} working days →</a>
+        <span class="text-border">·</span>
+        <a href="/guides" class="prose-link">Guides →</a>
+      </div>
+    </section>
+  </div>
+</Base>

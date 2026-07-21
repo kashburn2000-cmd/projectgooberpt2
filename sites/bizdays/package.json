@@ -1,0 +1,28 @@
+{
+  "name": "worktally",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "data": "node scripts/build-data.mjs",
+    "og": "node scripts/build-og.mjs",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.0.1",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.3",
+    "preact": "^10.29.7",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@preact/signals": "^2.9.4",
+    "@resvg/resvg-js": "^2.6.2",
+    "date-holidays": "^3.33.0",
+    "satori": "^0.28.2"
+  }
+}

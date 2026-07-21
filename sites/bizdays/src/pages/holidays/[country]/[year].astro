@@ -1,0 +1,132 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import AdSlot from "../../../components/AdSlot.astro";
+import { COUNTRIES, YEARS, type Country } from "../../../data/countries";
+import { getHolidays, holidaySet } from "../../../data/holidays";
+import { businessDaysInYear, dow } from "../../../lib/bizdays";
+import { flag, formatDate, weekendLabel } from "../../../lib/util";
+import { breadcrumbLd, faqLd } from "../../../lib/seo";
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const c of COUNTRIES)
+    for (const y of YEARS)
+      paths.push({ params: { country: c.slug, year: String(y) }, props: { country: c, year: y } });
+  return paths;
+}
+
+const { country, year } = Astro.props as { country: Country; year: number };
+const hols = getHolidays(country.code, year);
+const stats = businessDaysInYear(year, country.weekend, holidaySet(country.code, [year]));
+const onWeekend = (d: string) => country.weekend.includes(dow(d));
+const weekendCount = hols.filter((h) => onWeekend(h.date)).length;
+
+const idx = YEARS.indexOf(year);
+const prev = idx > 0 ? YEARS[idx - 1] : null;
+const next = idx < YEARS.length - 1 ? YEARS[idx + 1] : null;
+
+const faqs = [
+  {
+    q: `How many public holidays are there in ${country.name} in ${year}?`,
+    a: `There are ${hols.length} national public holidays in ${country.name} in ${year}${weekendCount ? `, of which ${weekendCount} fall on a weekend` : ""}.`,
+  },
+  {
+    q: `How many working days are in ${year} in ${country.name}?`,
+    a: `${year} has ${stats.businessDays} working days in ${country.name} — ${stats.calendarDays} calendar days minus ${stats.weekendDays} weekend days and ${stats.holidayDays} public holidays that fall on a weekday.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Public holidays", path: "/holidays" },
+    { name: country.name, path: `/holidays/${country.slug}` },
+    { name: String(year), path: `/holidays/${country.slug}/${year}` },
+  ]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title={`${country.name} Public Holidays ${year} — ${hols.length} Dates & Working Days`}
+  description={`Every public holiday in ${country.name} for ${year}: dates, days of the week, and the ${stats.businessDays} working days in the year.`}
+  image="/og/holidays.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs
+      items={[
+        { name: "Home", path: "/" },
+        { name: "Public holidays", path: "/holidays" },
+        { name: country.name, path: `/holidays/${country.slug}` },
+        { name: String(year) },
+      ]}
+    />
+
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <span class="mr-1">{flag(country.code)}</span>
+      {country.name} public holidays {year}
+    </h1>
+    <p class="mt-3 text-lg text-muted">
+      {hols.length} national public holidays, and {stats.businessDays} working days across the year.
+    </p>
+
+    <!-- Year nav -->
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+      {prev && <a href={`/holidays/${country.slug}/${prev}`} class="btn-ghost text-sm">← {prev}</a>}
+      {YEARS.map((y) => (
+        <a href={`/holidays/${country.slug}/${y}`} class:list={["chip hover:border-brand-400", y === year && "border-brand-500 text-brand-600 dark:text-brand-300"]}>{y}</a>
+      ))}
+      {next && <a href={`/holidays/${country.slug}/${next}`} class="btn-ghost text-sm">{next} →</a>}
+    </div>
+
+    <AdSlot slot="" />
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-3">
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Public holidays</div><div class="mt-1 font-mono text-2xl font-bold">{hols.length}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">Working days</div><div class="mt-1 font-mono text-2xl font-bold text-work-600">{stats.businessDays}</div></div>
+      <div class="card"><div class="text-xs font-semibold uppercase tracking-wide text-muted">On a weekend</div><div class="mt-1 font-mono text-2xl font-bold">{weekendCount}</div></div>
+    </div>
+
+    <section class="mt-6">
+      <div class="overflow-x-auto rounded-2xl border border-border">
+        <table class="w-full min-w-[460px] text-left text-sm">
+          <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+            <tr><th class="px-4 py-3 font-semibold">Date</th><th class="px-4 py-3 font-semibold">Holiday</th><th class="px-4 py-3 font-semibold"></th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            {hols.map((h) => (
+              <tr class="bg-surface">
+                <td class="whitespace-nowrap px-4 py-3 font-mono text-muted">{formatDate(h.date)}</td>
+                <td class="px-4 py-3 font-medium">{h.name}</td>
+                <td class="px-4 py-3 text-right">{onWeekend(h.date) && <span class="chip text-xs text-holiday-600">weekend</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-8 flex flex-wrap gap-2 text-sm">
+      <a href={`/holidays/${country.slug}`} class="prose-link">{country.name} holidays overview →</a>
+      <span class="text-border">·</span>
+      <a href={`/business-days/${country.slug}`} class="prose-link">Working-day calculator →</a>
+    </div>
+  </div>
+</Base>

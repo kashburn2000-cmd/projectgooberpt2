@@ -1,0 +1,126 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import BusinessDayCalculator from "../../components/islands/BusinessDayCalculator.tsx";
+import { COUNTRIES, YEARS, CURRENT_YEAR, type Country } from "../../data/countries";
+import { holidaySet } from "../../data/holidays";
+import { businessDaysBetween, businessDaysInYear } from "../../lib/bizdays";
+import { flag, weekendLabel } from "../../lib/util";
+import { breadcrumbLd, faqLd } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return COUNTRIES.map((c) => ({ params: { country: c.slug }, props: { country: c } }));
+}
+
+const { country } = Astro.props as { country: Country };
+const slim = COUNTRIES.map(({ code, name, slug, weekend }) => ({ code, name, slug, weekend }));
+const hset = holidaySet(country.code, [CURRENT_YEAR]);
+const yearStats = businessDaysInYear(CURRENT_YEAR, country.weekend, hset);
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const monthly = MONTHS.map((m, i) => {
+  const mm = String(i + 1).padStart(2, "0");
+  const last = new Date(Date.UTC(CURRENT_YEAR, i + 1, 0)).getUTCDate();
+  const r = businessDaysBetween(`${CURRENT_YEAR}-${mm}-01`, `${CURRENT_YEAR}-${mm}-${last}`, country.weekend, hset);
+  return { m, business: r.businessDays, holidays: r.holidayDays };
+});
+
+const faqs = [
+  {
+    q: `How many working days are there in ${country.name} this year?`,
+    a: `${CURRENT_YEAR} has ${yearStats.businessDays} working days in ${country.name}, excluding ${yearStats.weekendDays} weekend days and ${yearStats.holidayDays} public holidays that land on a weekday.`,
+  },
+  {
+    q: `How do you add business days to a date in ${country.name}?`,
+    a: `Use the calculator above in "Add / subtract" mode: pick a start date and the number of business days. It skips ${weekendLabel(country.weekend)} and ${country.name}'s public holidays, then returns the resulting date.`,
+  },
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Business days", path: "/business-days" },
+    { name: country.name, path: `/business-days/${country.slug}` },
+  ]),
+  faqLd(faqs),
+];
+---
+
+<Base
+  title={`Business Day Calculator — ${country.name} (${CURRENT_YEAR})`}
+  description={`Add or subtract business days, or count working days between two dates in ${country.name}. ${yearStats.businessDays} working days in ${CURRENT_YEAR}. Weekends and holidays included.`}
+  image="/og/business.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-4xl px-4">
+    <Breadcrumbs
+      items={[
+        { name: "Home", path: "/" },
+        { name: "Business days", path: "/business-days" },
+        { name: country.name },
+      ]}
+    />
+
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <span class="mr-1">{flag(country.code)}</span>
+      Business day calculator for {country.name}
+    </h1>
+    <p class="mt-3 text-lg text-muted">
+      Count working days or add business days, with {country.name}'s weekend
+      ({weekendLabel(country.weekend)}) and public holidays already built in.
+    </p>
+
+    <div class="mt-5 min-h-[430px]">
+      <BusinessDayCalculator client:only="preact" countries={slim} years={YEARS} initialCode={country.code} />
+    </div>
+
+    <AdSlot slot="" />
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">Working days per month in {country.name}, {CURRENT_YEAR}</h2>
+      <div class="mt-3 overflow-x-auto rounded-2xl border border-border">
+        <table class="w-full min-w-[420px] text-left text-sm">
+          <thead class="bg-surface2 text-xs uppercase tracking-wide text-muted">
+            <tr><th class="px-4 py-3 font-semibold">Month</th><th class="px-4 py-3 font-semibold">Working days</th><th class="px-4 py-3 font-semibold">Public holidays</th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            {monthly.map((r) => (
+              <tr class="bg-surface">
+                <td class="px-4 py-3 font-medium">{r.m}</td>
+                <td class="px-4 py-3 font-mono text-work-600">{r.business}</td>
+                <td class="px-4 py-3 font-mono text-muted">{r.holidays}</td>
+              </tr>
+            ))}
+            <tr class="bg-surface2 font-semibold">
+              <td class="px-4 py-3">Full year</td>
+              <td class="px-4 py-3 font-mono text-work-600">{yearStats.businessDays}</td>
+              <td class="px-4 py-3 font-mono text-muted">{yearStats.holidayDays}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-bold tracking-tight">FAQ</h2>
+      <div class="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        {faqs.map((f) => (
+          <details class="group px-5 py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+              {f.q}
+              <span class="text-muted transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-8 flex flex-wrap gap-2 text-sm">
+      <a href={`/holidays/${country.slug}`} class="prose-link">{country.name} public holidays →</a>
+      <span class="text-border">·</span>
+      <a href="/business-days" class="prose-link">Other countries →</a>
+    </div>
+  </div>
+</Base>

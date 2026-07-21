@@ -1,0 +1,51 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import { countriesByRegion, YEARS, CURRENT_YEAR } from "../../data/countries";
+import { getHolidays } from "../../data/holidays";
+import { flag, formatDate } from "../../lib/util";
+import { breadcrumbLd } from "../../lib/seo";
+
+const today = new Date().toISOString().slice(0, 10);
+function nextHoliday(code: string) {
+  for (const y of YEARS) for (const h of getHolidays(code, y)) if (h.date >= today) return h;
+  return getHolidays(code, CURRENT_YEAR)[0] ?? null;
+}
+const groups = countriesByRegion();
+const jsonLd = [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Public holidays", path: "/holidays" }])];
+---
+
+<Base
+  title="Public Holidays by Country — Dates for Every Country"
+  description="Public holiday calendars for 200+ countries, with the next upcoming holiday for each. Browse dates by country and year."
+  image="/og/holidays.png"
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-5xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Public holidays" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">Public holidays by country</h1>
+    <p class="mt-3 max-w-2xl text-lg text-muted">National public holidays for every country, {YEARS[0]}–{YEARS[YEARS.length - 1]}. The next upcoming holiday is shown for each.</p>
+
+    <AdSlot slot="" />
+
+    {
+      groups.map((g) => (
+        <section class="mt-8">
+          <h2 class="text-xl font-bold tracking-tight">{g.region}</h2>
+          <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {g.countries.map((c) => {
+              const h = nextHoliday(c.code);
+              return (
+                <a href={`/holidays/${c.slug}`} class="flex items-center justify-between gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 hover:border-brand-400">
+                  <span class="truncate font-medium"><span class="mr-1">{flag(c.code)}</span>{c.name}</span>
+                  {h && <span class="shrink-0 text-right text-xs text-muted">next: {formatDate(h.date).replace(/,? \d{4}$/, "")}</span>}
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</Base>

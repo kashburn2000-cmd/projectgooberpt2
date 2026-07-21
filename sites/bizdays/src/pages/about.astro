@@ -1,0 +1,64 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../config";
+import { COUNTRIES } from "../data/countries";
+import { breadcrumbLd } from "../lib/seo";
+
+const jsonLd = [
+  breadcrumbLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+  { "@type": "Organization", name: SITE.SITE_NAME, url: SITE.SITE_URL, email: SITE.CONTACT_EMAIL,
+    description: `A free business-day and public-holiday calculator covering ${COUNTRIES.length} countries.` },
+];
+---
+
+<Base title={`About ${SITE.SITE_NAME}`} description={`Why ${SITE.SITE_NAME} exists and how we keep our holiday and business-day data accurate.`} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl px-4">
+    <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "About" }]} />
+    <h1 class="text-balance text-3xl font-extrabold tracking-tight sm:text-4xl">About {SITE.SITE_NAME}</h1>
+    <div class="prose mt-6">
+      <p>
+        {SITE.SITE_NAME} answers a question that sounds trivial but usually isn't:
+        <strong>how many working days is that, really?</strong> Count business days
+        between two dates, or add business days to a date, for {COUNTRIES.length}
+        countries — with each country's actual weekends and public holidays taken
+        into account.
+      </p>
+
+      <h2>Why we built it</h2>
+      <p>
+        Most "business day" calculators do one naive thing: skip Saturday and
+        Sunday. That silently produces wrong answers in two situations that matter a
+        lot — when a public holiday falls inside your range, and when the country
+        doesn't rest on Saturday–Sunday at all. If you're promising "net 10 business
+        days" to a client in Dubai or scheduling around Golden Week in Japan, those
+        details are the whole point.
+      </p>
+
+      <h2>Who it's for</h2>
+      <ul>
+        <li><strong>Operations & finance</strong> — invoice due dates, SLAs, payment terms.</li>
+        <li><strong>Global & remote teams</strong> — scheduling across countries with different holidays and weekends.</li>
+        <li><strong>Anyone with a deadline</strong> — "15 working days from today" in a specific country.</li>
+      </ul>
+
+      <h2>What makes it trustworthy</h2>
+      <ul>
+        <li><strong>Real holiday data</strong> from an open, maintained dataset — see our <a href="/methodology">methodology</a>.</li>
+        <li><strong>Country-correct weekends</strong>, not a blanket Sat–Sun assumption, and you can override them.</li>
+        <li><strong>No sign-up, no paywall.</strong> The calculator is the product.</li>
+      </ul>
+
+      <h2>Important caveat</h2>
+      <p>
+        Treat results as excellent estimates, not legal advice. Regional and local
+        holidays, one-off government-declared days, and weekend changes can all move
+        the true answer. For binding deadlines, confirm against the official
+        government calendar — and if you spot an error, please
+        <a href="/contact">tell us</a>.
+      </p>
+
+      <p><a href="/">Open the calculator →</a></p>
+    </div>
+  </div>
+</Base>
